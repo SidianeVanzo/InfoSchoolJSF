@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+	<h:form id="formEditar">
+		<p:growl></p:growl>
+		<p:focus for="nome" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:outputLabel value="Edição de Alunos" />
+			</f:facet>
+			<p:outputLabel value="Código:" for="id" />
+			<p:inputText id="id" readonly="true" size="5"
+				value="#{alunosCrud.objeto.id}" />
+
+			<p:outputLabel value="Nome:" for="nome" />
+			<p:inputText id="nome" size="50" value="#{alunosCrud.objeto.nome}" />
+
+			<p:outputLabel value="CPF: " for="cpf" />
+			<p:inputText id="cpf" size="50" value="#{alunosCrud.objeto.cpf}" />
+
+			<p:outputLabel value="RG:  " for="rg" />
+			<p:inputText id="rg" size="50" value="#{alunosCrud.objeto.rg}" />
+
+			<p:outputLabel value="Telefone:  " for="telefone" />
+			<p:inputText id="telefone" size="50"
+				value="#{alunosCrud.objeto.telefone}" />
+
+			<p:outputLabel for="dataNascimento" value="Data de Nascimento" />
+			<p:calendar id="dataNascimento"
+				value="#{alunosCrud.objeto.dataNascimento}" pattern="dd-MM-yyyy"
+				mask="true" />
+
+			<p:outputLabel value="Endereço:" for="endereco" />
+			<p:inputText id="endereco" size="50"
+				value="#{alunosCrud.objeto.endereco}" />
+
+			<p:outputLabel value="Email:   " for="email" />
+			<p:inputText id="email" size="50" value="#{alunosCrud.objeto.email}" />
+
+			<p:outputLabel value="Cidade:  " for="inputCidade" />
+			<p:autoComplete id="inputCidade" style="width:600px" dropdown="true"
+				multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.nome}" itemValue="#{obj}"
+				value="#{alunosCrud.objeto.cidade}" converter="cidadeConverter"
+				completeMethod="#{alunosCrud.completeCidade}" />
+
+			<p:outputLabel value="Tipo de Aluno:  " for="inputTipoAluno" />
+			<p:autoComplete id="inputTipoAluno" style="width:600px"
+				dropdown="true" multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.descricao}" itemValue="#{obj}"
+				value="#{alunosCrud.objeto.tipoAluno}"
+				converter="tipoAlunoConverter"
+				completeMethod="#{alunosCrud.completeTipoAluno}" />
+
+			<f:facet name="footer">
+				<p:commandButton value="Gravar" action="#{alunosCrud.gravar}"
+					ajax="false" />
+				<p:commandButton value="Cancelar" action="#{alunosCrud.cancelar}"
+					ajax="false" immediate="true" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

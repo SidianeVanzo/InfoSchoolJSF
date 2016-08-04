@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:p="http://primefaces.org/ui">
+ <h:head>
+ <title>InfoSchool</title>
+ </h:head>
+<h:body onload="#{questionarioCrud.inicializarLista()}">
+	<h:form id="formLista">
+		<p:dataTable var="quest" value="#{questionarioCrud.questionarios}">
+			<f:facet name="header">
+				<p:spacer height="30"></p:spacer>
+				<div align="left" style="position: absolute; top: 20px; width: 95%;">
+					<p:outputLabel value="Listagem de Questionários"></p:outputLabel>
+				</div>
+				<div align="right"
+					style="position: absolute; top: 12px; width: 95%;">
+					<p:commandButton id="botaoIncluir" value="Incluir"
+						action="#{questionarioCrud.incluir}" ajax="false" />
+				</div>
+			</f:facet>
+			
+			<p:column headerText="Tipo Questionário" sortBy="#{quest.tipoQuestionario}" filterBy="#{quest.tipoQuestionario}" filterMatchMode="contains">
+				<h:outputText value="#{quest.tipoQuestionario}" />
+			</p:column>
+			
+			
+			<p:column headerText="Curso" sortBy="#{quest.curso}"
+				filterBy="#{quest.curso.nome}" filterMatchMode="contains">
+				<h:outputText value="#{quest.curso.nome}" />
+			</p:column>
+			
+			<p:column headerText="Professor" sortBy="#{quest.professor}"
+				filterBy="#{quest.professor.nome}" filterMatchMode="contains">
+				<h:outputText value="#{quest.professor.nome}" />
+			</p:column>
+			
+			<p:column headerText="Aluno" sortBy="#{quest.aluno}"
+				filterBy="#{quest.aluno.nome}" filterMatchMode="contains">
+				<h:outputText value="#{quest.aluno.nome}" />
+			</p:column>
+			
+			<p:column headerText="" width="90">
+				<p:commandButton action="#{questionarioCrud.alterar(quest.id)}"
+					value="Alterar" ajax="false"/>
+			</p:column>
+			<p:column headerText="" width="90">
+				<p:commandButton action="#{questionarioCrud.excluir(quest.id)}"
+					value="Excluir" ajax="false"
+					onclick="if (!confirm('Confirma a exclusão?')) return false" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

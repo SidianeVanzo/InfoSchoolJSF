@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>InfoSchool</title>
+</h:head>
+<h:body>
+	<h:form id="formEditar">
+		<p:growl></p:growl>
+		<p:focus for="id" />
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:outputLabel value="Edição de Questionário" />
+			</f:facet>
+			<p:outputLabel value="Código:" for="id" />
+			<p:inputText id="id" readonly="true" size="5"
+				value="#{questionarioCrud.objeto.id}" />
+
+			<p:outputLabel value="Tipo Questionário" for="tipoQuestionario" />
+			<p:selectOneMenu id="tipoQuestionario"
+				value="#{questionarioCrud.objeto.tipoQuestionario}">
+				<f:selectItems value="#{questionarioCrud.listaTipoQuest}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Pergunta:" for="pergunta" />
+			<p:inputText id="pergunta" size="50"
+				value="#{questionarioCrud.objeto.pergunta}" />
+
+			<p:outputLabel value="Resposta:" for="resposta" />
+			<p:inputText id="resposta" size="500"
+				value="#{questionarioCrud.objeto.resposta}" />
+
+			<p:outputLabel value="Professor:  " for="inputProfessor" />
+			<p:autoComplete id="inputProfessor" style="width:600px"
+				dropdown="true" multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.nome}" itemValue="#{obj}"
+				value="#{questionarioCrud.objeto.professor}"
+				converter="professorConverter"
+				completeMethod="#{questionarioCrud.completeProfessor}" />
+
+			<p:outputLabel value="Curso:  " for="inputCurso" />
+			<p:autoComplete id="inputCurso" style="width:600px" dropdown="true"
+				multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.nome}" itemValue="#{obj}"
+				value="#{questionarioCrud.objeto.curso}" converter="cursoConverter"
+				completeMethod="#{questionarioCrud.completeCurso}" />
+
+			<p:outputLabel value="Aluno:  " for="inputAluno" />
+			<p:autoComplete id="inputAluno" style="width:600px" dropdown="true"
+				multiple="false" forceSelection="true" var="obj"
+				itemLabel="#{obj.nome}" itemValue="#{obj}"
+				value="#{questionarioCrud.objeto.aluno}" converter="alunosConverter"
+				completeMethod="#{questionarioCrud.completeAlunos}" />
+
+			<f:facet name="footer">
+				<p:commandButton value="Gravar" action="#{questionarioCrud.gravar}"
+					ajax="false" />
+				<p:commandButton value="Cancelar"
+					action="#{questionarioCrud.cancelar}" ajax="false" immediate="true" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>
