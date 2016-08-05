@@ -50,28 +50,42 @@
 					value="Excluir" ajax="false"
 					onclick="if (!confirm('Confirma a exclusão?')) return false" />
 			</p:column>
-			<f:facet name="footer">
-				<div align="left" style="position: absolute; top: 225px; width: 95%;">
-					<p:commandButton id="botaoNovaTurma" value="Nova Turma" action="#{turmaCrud.incluir}"
-						ajax="false" />
-				</div>
-				<div align="center" style="position: absolute; top: 225px; width: 60%;">
-					<p:commandButton id="botaoChamada" value="Chamada" action="#{chamadaCrud.incluir}"
-						ajax="false" />
-				</div>
-				<div align="center" style="position: absolute; top: 225px; width: 110%;">
-					<p:commandButton id="botaoQuestionarios" value="Questionários" action="#{questionarioCrud.incluir}"
-						ajax="false" />
-				</div>
-				<div align="right" style="position: absolute; top: 225px; width: 95%;">
-					<p:commandButton id="botaoFinalizarTurma" value="Finalizar Turma e Emitir Relatório" action="#{questionarioCrud.incluir}"
-						ajax="false" />
-				</div>
-			</f:facet>
+
+
 		</p:dataTable>
+		<p:commandButton id="botaoIncluir" value="Incluir"
+			action="#{turmaCrud.incluir}" />
+
+		<p:commandButton id="botaoChamada" value="Chamada"
+			onclick="PF('dialogoChamada').show();" ajax="true" />
+
+		<p:commandButton id="botaoQuestionarios" value="QuestionÃ¡rios"
+			onclick="PF('dialogoQuestionario').show();" ajax="true" />
+
+		<p:commandButton id="botaoFinalizarTurma"
+			value="Finalizar Turma e Emitir RelatÃ³rio"
+			action="#{questionarioCrud.incluir}" />
+
 	</h:form>
 
+	<p:dialog header="Cadastro de Chamadas" widgetVar="dialogoChamada"
+		height="400" width="800" resizable="false" modal="true">
 
+		<iframe name="frameCha" id="frameCha"
+			src="../Chamada/ChamadaList.xhtml"
+			style="width: 100%; height: 100%; background-color: #FFFFFF;"
+			frameborder="0" />
+	</p:dialog>
+
+	<p:dialog header="Cadastro de QuestionÃ¡rios"
+		widgetVar="dialogoQuestionario" height="400" width="800"
+		resizable="false" modal="true">
+
+		<iframe name="frameQues" id="frameQues"
+			src="../Questionario/QuestionarioList.xhtml"
+			style="width: 100%; height: 100%; background-color: #FFFFFF;"
+			frameborder="0" />
+	</p:dialog>
 
 </h:body>
 </html>

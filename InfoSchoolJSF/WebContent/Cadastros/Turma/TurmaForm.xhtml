@@ -15,27 +15,45 @@
 		<p:focus for="nome" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Edição de Turmas" />
+				<p:outputLabel value="EdiÃ§Ã£o de Turmas" />
 			</f:facet>
-			<p:outputLabel value="Código:" for="id" />
+			<p:outputLabel value="CÃ³digo:" for="id" />
 			<p:inputText id="id" readonly="true" size="5"
 				value="#{turmaCrud.objeto.id}" />
 
 			<p:outputLabel value="Nome:" for="nome" />
 			<p:inputText id="nome" size="50" value="#{turmaCrud.objeto.nome}" />
 
-			<p:outputLabel value="Dia da Semana:" for="diaDaSemana" />
-			<p:inputText id="diaDaSemana" size="50"
-				value="#{turmaCrud.objeto.diaDaSemana}" />
+			<p:outputLabel value="Dia da Semana" />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.segundaFeira}" />
+				<h:outputText value="Segunda-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.tercaFeira}" />
+				<h:outputText value="TerÃ§a-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.quartaFeira}" />
+				<h:outputText value="Quarta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.quintaFeira}" />
+				<h:outputText value="Quinta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.sextaFeira}" />
+				<h:outputText value="Sexta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.sabado}" />
+				<h:outputText value="SÃ¡bado " />
+			</h:panelGrid>
 
 			<p:outputLabel value="Turno: " for="turno" />
 			<p:selectManyCheckbox id="turno" value="#{turmaCrud.objeto.turno}">
-		        <f:selectItem itemLabel="Manha" itemValue="Manha" />
-		        <f:selectItem itemLabel="Tarde" itemValue="Tarde" />
-		        <f:selectItem itemLabel="Noite" itemValue="Noite" />
-		    </p:selectManyCheckbox>
-			
-			
+				<f:selectItem itemLabel="Manha" itemValue="Manha" />
+				<f:selectItem itemLabel="Tarde" itemValue="Tarde" />
+				<f:selectItem itemLabel="Noite" itemValue="Noite" />
+			</p:selectManyCheckbox>
+
+
 
 			<p:outputLabel value="Curso:  " for="inputCurso" />
 			<p:autoComplete id="inputCurso" style="width:600px" dropdown="true"
@@ -79,7 +97,7 @@
 				<p:column headerText="Aluno">
 					<h:outputText value="#{obj.alunos.nome}" />
 				</p:column>
-				<p:column headerText="Data de Inserção" style="text-align: right;">
+				<p:column headerText="Data de InserÃ§Ã£o" style="text-align: right;">
 					<h:outputText value="#{obj.dataInsercaoAlunosTurma}">
 					</h:outputText>
 				</p:column>
@@ -94,7 +112,7 @@
 					<p:commandButton
 						actionListener="#{turmaCrud.excluirItem(rowIndex)}"
 						value="Excluir" ajax="true" update=":formEditar:tabelaAlunos"
-						onclick="if (!confirm('Confirma a exclusão?')) return false">
+						onclick="if (!confirm('Confirma a exclusÃ£o?')) return false">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -127,11 +145,11 @@
 					value="#{turmaCrud.alunosTurma.alunos}" converter="alunosConverter"
 					completeMethod="#{turmaCrud.completeAlunos}" />
 
-				<p:outputLabel value="Data de Inserção:"
-					for="dataInsercaoAlunosTurma" />				
+				<p:outputLabel value="Data de InserÃ§Ã£o:"
+					for="dataInsercaoAlunosTurma" />
 				<p:calendar id="dataInsercaoAlunosTurma"
-				value="#{turmaCrud.alunosTurma.dataInsercaoAlunosTurma}" pattern="dd-MM-yyyy"
-				mask="true" />
+					value="#{turmaCrud.alunosTurma.dataInsercaoAlunosTurma}"
+					pattern="dd-MM-yyyy" mask="true" />
 
 			</h:panelGrid>
 			<p:commandButton actionListener="#{turmaCrud.gravarItem}"
