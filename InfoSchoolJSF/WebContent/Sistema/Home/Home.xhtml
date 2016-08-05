@@ -14,7 +14,7 @@
 
 			<h:form id="formMenuBar">
 				<p:menubar>
-				
+
 					<p:menuitem value="Home" url="/faces/Sistema/Home/Home.xhtml" />
 					<p:submenu label="Cadastros" icon="ui-icon-document">
 
@@ -25,7 +25,7 @@
 								url="/faces/Cadastros/TipoAluno/TipoAlunoList.xhtml"
 								target="centro" />
 						</p:submenu>
-						
+
 
 						<p:submenu label="Pessoas" icon="ui-icon-contact">
 							<p:menuitem value="Diretor"
@@ -52,7 +52,7 @@
 							url="/faces/Cadastros/Cidade/CidadeList.xhtml" target="centro" />
 						<p:menuitem value="Curso"
 							url="/faces/Cadastros/Curso/CursoList.xhtml" target="centro" />
-				
+
 
 					</p:submenu>
 					<p:submenu label="Relatórios">
@@ -60,11 +60,9 @@
 							action="#{cidadeRel.executaRelatorio()}" ajax="false"
 							onclick="document.getElementById('formMenuBar').target='_blank';" />
 						<p:menuitem value="Alunos"
-								url="/faces/FiltrosRel/AlunosFiltro.xhtml"
-								target="centro" />
-								<p:menuitem value="Questionarios"
-								url="/faces/FiltrosRel/QuestionarioFiltro.xhtml"
-								target="centro" />
+							url="/faces/FiltrosRel/AlunosFiltro.xhtml" target="centro" />
+						<p:menuitem value="Questionarios"
+							url="/faces/FiltrosRel/QuestionarioFiltro.xhtml" target="centro" />
 					</p:submenu>
 					<p:menuitem value="Sair" action="#{loginControle.sair()}" />
 				</p:menubar>
@@ -78,7 +76,7 @@
 				<p:toolbar>
 					<p:toolbarGroup align="left">
 						<h:outputText style="font-size:14px;"
-				value="Bem Vindo, #{loginControle.usuarioLogado.nome}"></h:outputText>
+							value="Bem Vindo, #{loginControle.usuarioLogado.nome}"></h:outputText>
 					</p:toolbarGroup>
 
 					<p:toolbarGroup align="right">
@@ -100,7 +98,7 @@
 
 
 			<h:form>
-				<p:menu style="font-size:12px;"> 
+				<p:menu style="font-size:12px;">
 					<p:submenu label="Cadastros">
 						<p:submenu label="Alunos">
 							<p:menuitem value="Alunos"
@@ -120,7 +118,7 @@
 								url="/faces/Cadastros/Secretaria/SecretariaList.xhtml"
 								target="centro" />
 						</p:submenu>
-						
+
 						<p:submenu label="Turmas">
 							<p:menuitem value="Turma"
 								url="/faces/Cadastros/Turma/TurmaList.xhtml" target="centro" />
@@ -136,7 +134,11 @@
 							<p:menuitem value="Curso"
 								url="/faces/Cadastros/Curso/CursoList.xhtml" target="centro" />
 						</p:submenu>
-
+						<p:submenu label="Perguntas e Respostas">
+							<p:menuitem value="Perguntas e Respostas"
+								url="/faces/Cadastros/PergRespQuest/PergRespQuestList.xhtml"
+								target="centro" />
+						</p:submenu>
 					</p:submenu>
 				</p:menu>
 			</h:form>

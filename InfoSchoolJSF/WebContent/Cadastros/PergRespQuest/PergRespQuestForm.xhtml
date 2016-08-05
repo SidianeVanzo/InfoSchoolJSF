@@ -9,25 +9,34 @@
 	<title>InfoSchool</title>
 </h:head>
 <h:body>
-
 	<h:form id="formEditar">
 		<p:growl></p:growl>
-		<p:focus for="descricao" />
+		<p:focus for="pergunta" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Edição do Tipo de Aluno" />
+				<p:outputLabel
+					value="Edição de Perguntas e Respostas do Questionário" />
 			</f:facet>
+
+			<p:outputLabel value="Pergunta:" for="pergunta" />
+			<p:inputText id="pergunta" size="50"
+				value="#{pergRespQuestCrud.objeto.pergunta}" />
+
+			<p:outputLabel value="Resposta:" for="resposta" />
+			<p:inputText id="resposta" size="50"
+				value="#{pergRespQuestCrud.objeto.resposta}" />
 				
-			<p:outputLabel value="Descrição" for="descricao" />
-			<p:inputText id="descricao" size="50" value="#{tipoAlunoCrud.objeto.descricao}" />
-			
+				
+
 			<f:facet name="footer">
-				<p:commandButton value="Gravar" action="#{tipoAlunoCrud.gravar}"
+				<p:commandButton value="Gravar" action="#{pergRespQuestCrud.gravar}"
 					ajax="false" />
-				<p:commandButton value="Cancelar" action="#{tipoAlunoCrud.cancelar}"
-					ajax="false" immediate="true" />
+				<p:commandButton value="Cancelar"
+					action="#{pergRespQuestCrud.cancelar}" ajax="false"
+					immediate="true" />
 			</f:facet>
 		</p:panelGrid>
 	</h:form>
+
 </h:body>
 </html>

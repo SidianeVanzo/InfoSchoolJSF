@@ -11,14 +11,11 @@
 <h:body>
 	<h:form id="formEditar">
 		<p:growl></p:growl>
-		<p:focus for="id" />
+		<p:focus for="horario" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
 				<p:outputLabel value="Edição de Chamada" />
 			</f:facet>
-			<p:outputLabel value="Código:" for="id" />
-			<p:inputText id="id" readonly="true" size="5"
-				value="#{chamadaCrud.objeto.id}" />
 
 			<p:outputLabel value="Horário" for="horario" />
 			<p:inputText id="horario" size="50"

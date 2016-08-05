@@ -11,28 +11,16 @@
 <h:body>
 	<h:form id="formEditar">
 		<p:growl></p:growl>
-		<p:focus for="id" />
+		<p:focus for="tipoQuestionario" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
 				<p:outputLabel value="Edição de Questionário" />
 			</f:facet>
-			<p:outputLabel value="Código:" for="id" />
-			<p:inputText id="id" readonly="true" size="5"
-				value="#{questionarioCrud.objeto.id}" />
-
 			<p:outputLabel value="Tipo Questionário" for="tipoQuestionario" />
 			<p:selectOneMenu id="tipoQuestionario"
 				value="#{questionarioCrud.objeto.tipoQuestionario}">
 				<f:selectItems value="#{questionarioCrud.listaTipoQuest}" />
 			</p:selectOneMenu>
-
-			<p:outputLabel value="Pergunta:" for="pergunta" />
-			<p:inputText id="pergunta" size="50"
-				value="#{questionarioCrud.objeto.pergunta}" />
-
-			<p:outputLabel value="Resposta:" for="resposta" />
-			<p:inputText id="resposta" size="500"
-				value="#{questionarioCrud.objeto.resposta}" />
 
 			<p:outputLabel value="Professor:  " for="inputProfessor" />
 			<p:autoComplete id="inputProfessor" style="width:600px"
@@ -55,14 +43,53 @@
 				itemLabel="#{obj.nome}" itemValue="#{obj}"
 				value="#{questionarioCrud.objeto.aluno}" converter="alunosConverter"
 				completeMethod="#{questionarioCrud.completeAlunos}" />
-
-			<f:facet name="footer">
-				<p:commandButton value="Gravar" action="#{questionarioCrud.gravar}"
-					ajax="false" />
-				<p:commandButton value="Cancelar"
-					action="#{questionarioCrud.cancelar}" ajax="false" immediate="true" />
-			</f:facet>
 		</p:panelGrid>
+
+	
+
+		<p:dataTable var="pergResp"
+			value="#{pergRespQuestCrud.pergRespQuests}">
+			<f:facet name="header">
+				<p:spacer height="30"></p:spacer>
+				<div align="left"
+					style="position: absolute; top: 260px; width: 95%;">
+					<p:outputLabel
+						value="Listagem de Perguntas e Respostas do Questionário"></p:outputLabel>
+				</div>
+				<div align="right"
+					style="position: absolute; top: 260px; width: 95%;">
+					<p:commandButton id="botaoIncluir" value="Incluir"
+						action="#{pergRespQuestCrud.incluir}" ajax="false" />
+				</div>
+			</f:facet>
+
+			<p:column headerText="Pergunta" sortBy="#{pergResp.pergunta}"
+				filterBy="#{pergResp.pergunta}" filterMatchMode="contains">
+				<h:outputText value="#{pergResp.pergunta}" />
+			</p:column>
+
+			<p:column headerText="Resposta" sortBy="#{pergResp.resposta}"
+				filterBy="#{pergResp.resposta}" filterMatchMode="contains">
+				<h:outputText value="#{pergResp.resposta}" />
+			</p:column>
+
+			<p:column headerText="" width="90">
+				<p:commandButton action="#{pergRespQuestCrud.alterar(pergResp.id)}"
+					value="Alterar" ajax="false" />
+			</p:column>
+			<p:column headerText="" width="90">
+				<p:commandButton action="#{pergRespQuestCrud.excluir(pergResp.id)}"
+					value="Excluir" ajax="false"
+					onclick="if (!confirm('Confirma a exclusão?')) return false" />
+			</p:column>
+		</p:dataTable>
+
+		<p:commandButton id="Gravar" value="Gravar"
+			action="#{questionarioCrud.gravar}" />
+
+		<p:commandButton value="Cancelar"
+			action="#{questionarioCrud.cancelar}" ajax="false" immediate="true" />
 	</h:form>
+
 </h:body>
 </html>

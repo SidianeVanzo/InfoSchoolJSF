@@ -15,12 +15,8 @@
 		<p:focus for="nome" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="EdiÃ§Ã£o de Turmas" />
+				<p:outputLabel value="Edição de Turmas" />
 			</f:facet>
-			<p:outputLabel value="CÃ³digo:" for="id" />
-			<p:inputText id="id" readonly="true" size="5"
-				value="#{turmaCrud.objeto.id}" />
-
 			<p:outputLabel value="Nome:" for="nome" />
 			<p:inputText id="nome" size="50" value="#{turmaCrud.objeto.nome}" />
 
@@ -31,7 +27,7 @@
 				<h:outputText value="Segunda-Feira " />
 
 				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.tercaFeira}" />
-				<h:outputText value="TerÃ§a-Feira " />
+				<h:outputText value="Terça-Feira " />
 
 				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.quartaFeira}" />
 				<h:outputText value="Quarta-Feira " />
@@ -43,7 +39,7 @@
 				<h:outputText value="Sexta-Feira " />
 
 				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.sabado}" />
-				<h:outputText value="SÃ¡bado " />
+				<h:outputText value="Sábado " />
 			</h:panelGrid>
 
 			<p:outputLabel value="Turno: " for="turno" />
@@ -97,7 +93,7 @@
 				<p:column headerText="Aluno">
 					<h:outputText value="#{obj.alunos.nome}" />
 				</p:column>
-				<p:column headerText="Data de InserÃ§Ã£o" style="text-align: right;">
+				<p:column headerText="Data de Inserção" style="text-align: right;">
 					<h:outputText value="#{obj.dataInsercaoAlunosTurma}">
 					</h:outputText>
 				</p:column>
@@ -112,7 +108,7 @@
 					<p:commandButton
 						actionListener="#{turmaCrud.excluirItem(rowIndex)}"
 						value="Excluir" ajax="true" update=":formEditar:tabelaAlunos"
-						onclick="if (!confirm('Confirma a exclusÃ£o?')) return false">
+						onclick="if (!confirm('Confirma a exclusão?')) return false">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -145,7 +141,7 @@
 					value="#{turmaCrud.alunosTurma.alunos}" converter="alunosConverter"
 					completeMethod="#{turmaCrud.completeAlunos}" />
 
-				<p:outputLabel value="Data de InserÃ§Ã£o:"
+				<p:outputLabel value="Data de Inserção:"
 					for="dataInsercaoAlunosTurma" />
 				<p:calendar id="dataInsercaoAlunosTurma"
 					value="#{turmaCrud.alunosTurma.dataInsercaoAlunosTurma}"

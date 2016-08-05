@@ -16,9 +16,6 @@
 			<f:facet name="header">
 				<p:outputLabel value="Edição de Professor" />
 			</f:facet>
-			<p:outputLabel value="Código:" for="id" />
-			<p:inputText id="id" readonly="true" size="5"
-				value="#{professorCrud.objeto.id}" />
 
 			<p:outputLabel for="nome" value="Nome" />
 			<p:inputText id="nome" value="#{professorCrud.objeto.nome}" size="50" />
@@ -43,13 +40,41 @@
 			<p:password id="senha" value="#{professorCrud.objeto.senha}" size="50" />
  
 
-			<p:outputLabel value="Turnos Disponíveis: " for="turnosDisponiveis" />
-			<p:inputText id="turnosDisponiveis" size="50"
-				value="#{professorCrud.objeto.turnosDisponiveis}" />
+						<p:outputLabel value="Turno Disponível: " />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
 
-			<p:outputLabel value="Dias Disponíveis: " for="diasDisponiveis" />
-			<p:inputText id="diasDisponiveis" size="50"
-				value="#{professorCrud.objeto.diasDisponiveis}" />
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.manha}" />
+				<h:outputText value="Manhã" />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.tarde}" />
+				<h:outputText value="Tarde" />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.noite}" />
+				<h:outputText value="Noite" />
+
+			</h:panelGrid>
+
+			<p:outputLabel value="Dia da Semana" />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.segundaFeira}" />
+				<h:outputText value="Segunda-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.tercaFeira}" />
+				<h:outputText value="Terça-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.quartaFeira}" />
+				<h:outputText value="Quarta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.quintaFeira}" />
+				<h:outputText value="Quinta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.sextaFeira}" />
+				<h:outputText value="Sexta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{professorCrud.objeto.sabado}" />
+				<h:outputText value="Sábado " />
+			</h:panelGrid>
 
 
 			<p:outputLabel value="Cursos Habilitados" />

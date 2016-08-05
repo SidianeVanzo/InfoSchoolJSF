@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Curso;
+import br.upf.casca.ads.beans.classes.PergRespQuest;
 import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.classes.Professor;
 import br.upf.casca.ads.beans.classes.Questionario;
@@ -53,6 +54,16 @@ public class QuestionarioCrud {
 		 "from Alunos where upper(nome) like "+
 		"'"+query.trim().toUpperCase()+"%' "+
 		 "order by nome").getResultList();
+		 em.close();
+		 return results;
+	}
+	
+	public List<PergRespQuest> completePergRespQuest(String query) {
+		EntityManager em = ConexaoJPA.getEntityManager();
+		 List<PergRespQuest> results = em.createQuery(
+		 "from PergRespQuest where upper(pergunta) like "+
+		"'"+query.trim().toUpperCase()+"%' "+
+		 "order by pergunta").getResultList();
 		 em.close();
 		 return results;
 	}

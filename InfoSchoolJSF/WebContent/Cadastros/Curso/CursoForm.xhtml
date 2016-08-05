@@ -16,20 +16,45 @@
 			<f:facet name="header">
 				<p:outputLabel value="Edição de Curso" />
 			</f:facet>
-			<p:outputLabel value="Código:" for="id" />
-			<p:inputText id="id" readonly="true" size="5"
-				value="#{cursoCrud.objeto.id}" />
 
 			<p:outputLabel value="Nome:" for="nome" />
 			<p:inputText id="nome" size="50" value="#{cursoCrud.objeto.nome}" />
 
-			<p:outputLabel value="Turno Disponível: " for="turnoDisponivel" />
-			<p:inputText id="turnoDisponivel" size="50"
-				value="#{cursoCrud.objeto.turnoDisponivel}" />
-				
-				<p:outputLabel value="Dias: " for="dias" />
-			<p:inputText id="dias" size="50"
-				value="#{cursoCrud.objeto.dias}" />
+			<p:outputLabel value="Turno Disponível: " />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.manha}" />
+				<h:outputText value="Manhã" />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.tarde}" />
+				<h:outputText value="Tarde" />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.noite}" />
+				<h:outputText value="Noite" />
+
+			</h:panelGrid>
+
+			<p:outputLabel value="Dia da Semana" />
+			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.segundaFeira}" />
+				<h:outputText value="Segunda-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.tercaFeira}" />
+				<h:outputText value="Terça-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.quartaFeira}" />
+				<h:outputText value="Quarta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.quintaFeira}" />
+				<h:outputText value="Quinta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.sextaFeira}" />
+				<h:outputText value="Sexta-Feira " />
+
+				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.sabado}" />
+				<h:outputText value="Sábado " />
+			</h:panelGrid>
 
 
 			<p:outputLabel value="Carga Horária:  " for="cargaHoraria" />
