@@ -21,7 +21,9 @@
 			<p:inputText id="nome" size="50" value="#{alunosCrud.objeto.nome}" />
 
 			<p:outputLabel value="CPF: " for="cpf" />
-			<p:inputText id="cpf" size="50" value="#{alunosCrud.objeto.cpf}" />
+			<p:inputMask id="cpf" size="40" mask="999.999.999-99"
+				value="#{alunosCrud.objeto.cpf}" />
+			
 
 			<p:outputLabel value="RG:  " for="rg" />
 			<p:inputText id="rg" size="50" value="#{alunosCrud.objeto.rg}" />
@@ -33,14 +35,16 @@
 			<p:outputLabel for="dataNascimento" value="Data de Nascimento" />
 			<p:calendar id="dataNascimento"
 				value="#{alunosCrud.objeto.dataNascimento}" pattern="dd-MM-yyyy"
-				mask="true" />
+				mask="true"/>
 
 			<p:outputLabel value="Endereço:" for="endereco" />
 			<p:inputText id="endereco" size="50"
 				value="#{alunosCrud.objeto.endereco}" />
 
 			<p:outputLabel value="Email:   " for="email" />
-			<p:inputText id="email" size="50" value="#{alunosCrud.objeto.email}" />
+			<p:inputText id="email" size="50" value="#{alunosCrud.objeto.email}"/>
+		
+			
 
 			<p:outputLabel value="Cidade:  " for="inputCidade" />
 			<p:autoComplete id="inputCidade" style="width:600px" dropdown="true"

@@ -19,25 +19,26 @@
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Incluir"
-						action="#{tipoTurmaCrud.incluir}" ajax="false" />
+						action="#{tipoTurmaCrud.incluir}" ajax="false" 
+						icon="ui-icon-plusthick"/>
 				</div>
 			</f:facet>
 
-			<p:column headerText="Código" sortBy="#{tipoTurma.id}" filterBy="#{tipoTurma.id}" filterMatchMode="exact">
+			<p:column headerText="Código" sortBy="#{tipoTurma.id}">
 				<h:outputText value="#{tipoTurma.id}" />
 			</p:column>
-			<p:column headerText="Descricao" sortBy="#{tipoTurma.descricao}" filterBy="#{tipoTurma.descricao}" filterMatchMode="contains">
+			<p:column headerText="Descricao" sortBy="#{tipoTurma.descricao}">
 				<h:outputText value="#{tipoTurma.descricao}" />
 			</p:column>
 
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{tipoTurmaCrud.alterar(tipoTurma.id)}"
-					value="Alterar" ajax="false" />
+					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{tipoTurmaCrud.excluir(tipoTurma.id)}"
 					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" />
+					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
 			</p:column>
 		</p:dataTable>
 	</h:form>

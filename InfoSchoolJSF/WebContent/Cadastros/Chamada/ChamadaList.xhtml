@@ -22,14 +22,10 @@
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Incluir"
-						action="#{chamadaCrud.incluir}" ajax="false" />
+						action="#{chamadaCrud.incluir}" ajax="false" 
+						icon="ui-icon-plusthick"/>
 				</div>
 			</f:facet>
-
-			<p:column headerText="Horario" sortBy="#{chamada.horario}"
-				filterBy="#{chamada.horario}" filterMatchMode="contains">
-				<h:outputText value="#{chamada.horario}" />
-			</p:column>
 
 			<p:column headerText="Datas Aulas" sortBy="#{chamada.datasAulas}"
 				filterBy="#{chamada.datasAulas}" filterMatchMode="contains">
@@ -55,12 +51,12 @@
 						
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{chamadaCrud.alterar(chamada.id)}"
-					value="Alterar" ajax="false" />
+					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{chamadaCrud.excluir(chamada.id)}"
 					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" />
+					onclick="if (!confirm('Confirma a exclusão?')) return false"  icon="ui-icon-trash"/>
 			</p:column>
 
 		</p:dataTable>

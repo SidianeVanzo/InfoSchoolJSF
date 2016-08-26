@@ -53,8 +53,9 @@
 						<p:menuitem value="Curso"
 							url="/faces/Cadastros/Curso/CursoList.xhtml" target="centro" />
 
-
 					</p:submenu>
+					
+					
 					<p:submenu label="Relatórios">
 						<p:menuitem value="Cidades"
 							action="#{cidadeRel.executaRelatorio()}" ajax="false"
@@ -64,6 +65,13 @@
 						<p:menuitem value="Questionarios"
 							url="/faces/FiltrosRel/QuestionarioFiltro.xhtml" target="centro" />
 					</p:submenu>
+
+					<p:submenu label="Ajuda">
+						<p:menuitem value="Dúvida Frequente"
+							url="/faces/Cadastros/Duvida Frequente/DuvidaFrequenteList.xhtml" target="centro"/>
+					</p:submenu>
+					
+
 					<p:menuitem value="Sair" action="#{loginControle.sair()}" />
 				</p:menubar>
 			</h:form>

@@ -22,7 +22,8 @@
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Incluir"
-						action="#{alunosCrud.incluir}" ajax="false" />
+						action="#{alunosCrud.incluir}" ajax="false" 
+						icon="ui-icon-plusthick"/>
 				</div>
 			</f:facet>
 
@@ -47,12 +48,12 @@
 			
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{alunosCrud.alterar(alunos.id)}"
-					value="Alterar" ajax="false"/>
+					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{alunosCrud.excluir(alunos.id)}"
 					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" />
+					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
 			</p:column>
 
 		</p:dataTable>

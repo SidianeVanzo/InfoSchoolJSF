@@ -22,7 +22,8 @@
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Incluir"
-						action="#{cursoCrud.incluir}" ajax="false" />
+						action="#{cursoCrud.incluir}" ajax="false" 
+						icon="ui-icon-plusthick"/>
 				</div>
 			</f:facet>
 
@@ -32,14 +33,7 @@
 			<p:column headerText="Nome" sortBy="#{curso.nome}" filterBy="#{curso.nome}" filterMatchMode="contains">
 				<h:outputText value="#{curso.nome}" />
 			</p:column>
-			
-			<p:column headerText="Turno Disponivel" sortBy="#{curso.turnoDisponivel}" filterBy="#{curso.turnoDisponivel}" filterMatchMode="contains">
-				<h:outputText value="#{curso.turnoDisponivel}" />
-			</p:column>
-			
-			<p:column headerText="Dias" sortBy="#{curso.dias}" filterBy="#{curso.dias}" filterMatchMode="contains">
-				<h:outputText value="#{curso.dias}" />
-			</p:column>
+
 
 		
 			<p:column headerText="Carga Horária" sortBy="#{curso.cargaHoraria}" filterBy="#{curso.cargaHoraria}" filterMatchMode="contains">
@@ -48,12 +42,12 @@
 					
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{cursoCrud.alterar(curso.id)}"
-					value="Alterar" ajax="false"/>
+					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{cursoCrud.excluir(curso.id)}"
 					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" />
+					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
 			</p:column>
 
 		</p:dataTable>

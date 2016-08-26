@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>INFOSCHOOL</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:focus for="login" />
+		<p:growl></p:growl>		
+		
+		<p:panelGrid columns="1" cellpadding="10"
+			style="position: absolute; left: 48%; top: 25%; margin-left:-135px; margin-top:-85px;">
+		<p:outputLabel align="center" value="ADMINISTRATIVO INFOSCHOOL"/>
+		<p:outputLabel align="center" value="Cuidado, essa é uma área restrita"/>
+		<p:outputLabel align="center" value="LEI Nº 12.737, de 30 de novembro de 2012"/>
+		<p:outputLabel align="center" value="Suporte: 145782@upf.br"/>
+		</p:panelGrid>
+			
+		<p:panelGrid columns="2"
+			style="position: absolute; left: 50%; top: 48%; margin-left:-135px; margin-top:-85px;">
+			
+			<p:outputLabel value="Usuário:" for="usuário" />
+			<p:inputText id="usuário" size="15" maxlength="20"
+				value="#{loginAdControle.usuario}" />
+			<p:outputLabel value="Senha:" for="senha" />
+			<p:password id="senha" size="15" maxlength="40"
+				value="#{loginAdControle.senha}" />
+			<f:facet name="footer">
+				<p:commandButton value="Entrar" action="#{loginAdControle.entrar}"
+					ajax="false" />
+			</f:facet>
+		</p:panelGrid>
+		
+	</h:form>
+</h:body>
+</html>
