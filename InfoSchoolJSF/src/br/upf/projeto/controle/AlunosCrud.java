@@ -2,15 +2,18 @@ package br.upf.projeto.controle;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Cidade;
+import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.classes.TipoAluno;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
-
 
 @ManagedBean
 @SessionScoped
@@ -18,29 +21,25 @@ public class AlunosCrud {
 
 	private Alunos objeto;
 	private List<Alunos> alunos;
-	
+	private String email;
 
 	public List<Cidade> completeCidade(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		 List<Cidade> results = em.createQuery(
-		 "from Cidade where upper(nome) like "+
-		"'"+query.trim().toUpperCase()+"%' "+
-		 "order by nome").getResultList();
-		 em.close();
-		 return results;
-		 }
-	
-	public List<TipoAluno> completeTipoAluno(String query) {
-		EntityManager em = ConexaoJPA.getEntityManager();
-		 List<TipoAluno> results = em.createQuery(
-		 "from TipoAluno where upper(descricao) like "+
-		"'"+query.trim().toUpperCase()+"%' "+
-		 "order by descricao").getResultList();
-		 em.close();
-		 return results;
+		List<Cidade> results = em.createQuery(
+				"from Cidade where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
+				.getResultList();
+		em.close();
+		return results;
 	}
 
-	
+	public List<TipoAluno> completeTipoAluno(String query) {
+		EntityManager em = ConexaoJPA.getEntityManager();
+		List<TipoAluno> results = em.createQuery("from TipoAluno where upper(descricao) like " + "'"
+				+ query.trim().toUpperCase() + "%' " + "order by descricao").getResultList();
+		em.close();
+		return results;
+	}
+
 	public void inicializarLista() {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		alunos = em.createQuery("from Alunos").getResultList();
@@ -55,11 +54,13 @@ public class AlunosCrud {
 
 	public String gravar() {
 		EntityManager em = ConexaoJPA.getEntityManager();
+
 		em.getTransaction().begin();
 		em.merge(objeto);
 		em.getTransaction().commit();
 		em.close();
 		return "AlunosList?faces-redirect=true";
+
 	}
 
 	public String cancelar() {
@@ -107,7 +108,12 @@ public class AlunosCrud {
 		this.alunos = alunos;
 	}
 
-	
-	
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

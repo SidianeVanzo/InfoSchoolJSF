@@ -31,6 +31,7 @@ public class SecretariaCrud {
 	public String gravar(){
 		EntityManager em = ConexaoJPA.getEntityManager();
 		 em.getTransaction().begin();
+		 objeto.setTipo("SECRETARIA");
 		 em.merge(objeto);
 		 em.getTransaction().commit();
 		 em.close();

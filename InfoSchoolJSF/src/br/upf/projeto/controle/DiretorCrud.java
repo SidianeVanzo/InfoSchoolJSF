@@ -31,6 +31,8 @@ public class DiretorCrud {
 	public String gravar(){
 		EntityManager em = ConexaoJPA.getEntityManager();
 		 em.getTransaction().begin();
+
+		 objeto.setTipo("DIRETOR");
 		 em.merge(objeto);
 		 em.getTransaction().commit();
 		 em.close();

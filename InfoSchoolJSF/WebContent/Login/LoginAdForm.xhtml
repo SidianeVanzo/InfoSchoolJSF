@@ -10,7 +10,7 @@
 </h:head>
 <h:body>
 	<h:form>
-		<p:focus for="login" />
+		<p:focus for="usuario" />
 		<p:growl></p:growl>		
 		
 		<p:panelGrid columns="1" cellpadding="10"
@@ -24,8 +24,8 @@
 		<p:panelGrid columns="2"
 			style="position: absolute; left: 50%; top: 48%; margin-left:-135px; margin-top:-85px;">
 			
-			<p:outputLabel value="Usuário:" for="usuário" />
-			<p:inputText id="usuário" size="15" maxlength="20"
+			<p:outputLabel value="Usuário:" for="usuario" />
+			<p:inputText id="usuario" size="15" maxlength="20"
 				value="#{loginAdControle.usuario}" />
 			<p:outputLabel value="Senha:" for="senha" />
 			<p:password id="senha" size="15" maxlength="40"

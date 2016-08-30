@@ -31,6 +31,8 @@ public class AdministradorCrud {
 	public String gravar(){
 		EntityManager em = ConexaoJPA.getEntityManager();
 		 em.getTransaction().begin();
+
+		 objeto.setTipo("ADMINISTRADOR");
 		 em.merge(objeto);
 		 em.getTransaction().commit();
 		 em.close();
