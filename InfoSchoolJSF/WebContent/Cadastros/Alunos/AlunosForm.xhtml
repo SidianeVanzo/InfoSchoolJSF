@@ -53,13 +53,11 @@
 				value="#{alunosCrud.objeto.cidade}" converter="cidadeConverter"
 				completeMethod="#{alunosCrud.completeCidade}" />
 
-			<p:outputLabel value="Tipo de Aluno:  " for="inputTipoAluno" />
-			<p:autoComplete id="inputTipoAluno" style="width:600px"
-				dropdown="true" multiple="false" forceSelection="true" var="obj"
-				itemLabel="#{obj.descricao}" itemValue="#{obj}"
-				value="#{alunosCrud.objeto.tipoAluno}"
-				converter="tipoAlunoConverter"
-				completeMethod="#{alunosCrud.completeTipoAluno}" />
+			<p:outputLabel value="Tipo Aluno:" for="tipoAluno" />
+			<p:selectOneMenu id="tipoAluno"
+					value="#{alunosCrud.objeto.tipoAluno}">
+					<f:selectItems value="#{alunosCrud.listaTipo}" />
+				</p:selectOneMenu>
 
 			<f:facet name="footer">
 				<p:commandButton value="Gravar" action="#{alunosCrud.gravar}"

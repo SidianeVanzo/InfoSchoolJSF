@@ -61,7 +61,7 @@ public class LoginAdControle {
                return ""; 
         }else{ 
         	usuarioLogado = list.get(0); 
-               return "/faces/Ad_Sistema/HomeAd.xhtml"; 
+            return "/faces/Ad_Sistema/HomeAd/HomeAd.xhtml"; 
         } 
  } 
 	

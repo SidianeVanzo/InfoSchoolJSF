@@ -6,36 +6,73 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>INFOSCHOOL</title>
+	<title>InfoSchool</title>
+
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 </h:head>
-<h:body>
-	<h:form>
-		<p:focus for="usuario" />
-		<p:growl></p:growl>		
-		
-		<p:panelGrid columns="1" cellpadding="10"
-			style="position: absolute; left: 48%; top: 25%; margin-left:-135px; margin-top:-85px;">
-		<p:outputLabel align="center" value="ADMINISTRATIVO INFOSCHOOL"/>
-		<p:outputLabel align="center" value="Cuidado, essa é uma área restrita"/>
-		<p:outputLabel align="center" value="LEI Nº 12.737, de 30 de novembro de 2012"/>
-		<p:outputLabel align="center" value="Suporte: 145782@upf.br"/>
-		</p:panelGrid>
-			
-		<p:panelGrid columns="2"
-			style="position: absolute; left: 50%; top: 48%; margin-left:-135px; margin-top:-85px;">
-			
-			<p:outputLabel value="Usuário:" for="usuario" />
-			<p:inputText id="usuario" size="15" maxlength="20"
-				value="#{loginAdControle.usuario}" />
-			<p:outputLabel value="Senha:" for="senha" />
-			<p:password id="senha" size="15" maxlength="40"
-				value="#{loginAdControle.senha}" />
-			<f:facet name="footer">
-				<p:commandButton value="Entrar" action="#{loginAdControle.entrar}"
-					ajax="false" />
-			</f:facet>
-		</p:panelGrid>
-		
-	</h:form>
+<h:body styleClass="cyan lighten-5">
+	<div class="valign-wrapper" id="login-page">
+		<div class="container">
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+
+								<p:outputLabel align="center" value="Área Restrita InfoSchool" />
+
+								<div class="left-align">
+									<h:form>
+										<p:focus for="usuario" />
+										<p:growl></p:growl>
+
+
+
+										<div class="row">
+											<div class="col s12 input-field">
+												<p:outputLabel value="Usuário" for="usuario" />
+												<p:inputText id="usuario" size="15" maxlength="20"
+													value="#{loginAdControle.usuario}" />
+											</div>
+											<div class="col s12 input-field">
+												<p:outputLabel value="Senha" for="senha" />
+												<p:password id="senha" size="15" maxlength="40"
+													value="#{loginAdControle.senha}" />
+											</div>
+											<div class="col s12 input-field">
+												<p:commandButton value="Entrar" 
+													action="#{loginAdControle.entrar}" ajax="false" />
+											</div>
+										</div>
+
+
+									</h:form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(document).on("ready", function() {
+			$('#login-page').css({
+				'height' : window.innerHeight + 'px'
+			});
+		});
+	</script>
+
 </h:body>
 </html>

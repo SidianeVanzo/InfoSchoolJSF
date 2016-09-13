@@ -65,12 +65,11 @@
 				value="#{turmaCrud.objeto.curso}" converter="cursoConverter"
 				completeMethod="#{turmaCrud.completeCurso}" />
 
-			<p:outputLabel value="Tipo Turma:  " for="inputTipoTurma" />
-			<p:autoComplete id="inputTipoTurma" style="width:600px"
-				dropdown="true" multiple="false" forceSelection="true" var="obj"
-				itemLabel="#{obj.descricao}" itemValue="#{obj}"
-				value="#{turmaCrud.objeto.tipoTurma}" converter="tipoTurmaConverter"
-				completeMethod="#{turmaCrud.completeTipoTurma}" />
+			<p:outputLabel value="Tipo Turma:" for="tipoTurma" />
+			<p:selectOneMenu id="tipoTurma"
+					value="#{turmaCrud.objeto.tipoTurma}">
+					<f:selectItems value="#{turmaCrud.listaTipo}" />
+				</p:selectOneMenu>
 
 			<p:outputLabel value="Professor:  " for="inputProfessor" />
 			<p:autoComplete id="inputProfessor" style="width:600px"

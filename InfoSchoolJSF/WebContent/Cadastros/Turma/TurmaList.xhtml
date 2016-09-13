@@ -29,8 +29,8 @@
 
 
 			<p:column headerText="Tipo da Turma" sortBy="#{turma.tipoTurma}"
-				filterBy="#{turma.tipoTurma.descricao}" filterMatchMode="contains">
-				<h:outputText value="#{turma.tipoTurma.descricao}" />
+				filterBy="#{turma.tipoTurma}" filterMatchMode="contains">
+				<h:outputText value="#{turma.tipoTurma}" />
 			</p:column>
 
 			<p:column headerText="" width="90">

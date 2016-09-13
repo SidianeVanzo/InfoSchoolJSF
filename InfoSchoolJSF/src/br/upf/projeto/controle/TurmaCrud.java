@@ -3,15 +3,18 @@ package br.upf.projeto.controle;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.AlunosTurma;
 import br.upf.casca.ads.beans.classes.Curso;
+import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.classes.Professor;
-import br.upf.casca.ads.beans.classes.TipoTurma;
 import br.upf.casca.ads.beans.classes.Turma;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
@@ -21,6 +24,7 @@ public class TurmaCrud {
 
 	private Turma objeto;
 	private List<Turma> turmas;
+	private String[] listaTipo = { "NORMAL", "PARTICULAR" };
 
 	public List<Curso> completeCurso(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
@@ -31,26 +35,20 @@ public class TurmaCrud {
 		return results;
 	}
 
-	public List<TipoTurma> completeTipoTurma(String query) {
-		EntityManager em = ConexaoJPA.getEntityManager();
-		List<TipoTurma> results = em.createQuery("from TipoTurma where upper(descricao) like " + "'"
-				+ query.trim().toUpperCase() + "%' " + "order by descricao").getResultList();
-		em.close();
-		return results;
-	}
-	
 	public List<Professor> completeProfessor(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		List<Professor> results = em.createQuery("from Professor where upper(nome) like " + "'"
-				+ query.trim().toUpperCase() + "%' " + "order by nome").getResultList();
+		List<Professor> results = em.createQuery(
+				"from Professor where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
+				.getResultList();
 		em.close();
 		return results;
 	}
-	
+
 	public List<Alunos> completeAlunos(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		List<Alunos> results = em.createQuery("from Alunos where upper(nome) like " + "'"
-				+ query.trim().toUpperCase() + "%' " + "order by nome").getResultList();
+		List<Alunos> results = em.createQuery(
+				"from Alunos where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
+				.getResultList();
 		em.close();
 		return results;
 	}
@@ -113,7 +111,7 @@ public class TurmaCrud {
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
-		
+
 	public Turma getObjeto() {
 		return objeto;
 	}
@@ -122,11 +120,16 @@ public class TurmaCrud {
 		this.objeto = objeto;
 	}
 
+	public String[] getListaTipo() {
+		return listaTipo;
+	}
 
-
+	public void setListaTipo(String[] listaTipo) {
+		this.listaTipo = listaTipo;
+	}
 
 	private AlunosTurma alunosTurma; // itens em edição, vinculado ao formulário
-	private Integer rowIndex = null; // índice do itens selecionado - alterar e
+	private Integer rowIndex = null; // índice dos itens selecionado - alterar e
 										// excluir
 
 	public void incluirItem() {
@@ -136,29 +139,60 @@ public class TurmaCrud {
 
 	public void alterarItem(Integer rowIndex) {
 		this.rowIndex = rowIndex;
-		alunosTurma = objeto.getAlunosTurma().get(rowIndex); // pega itens da coleção
+		alunosTurma = objeto.getAlunosTurma().get(rowIndex); // pega itens da
+																// coleção
 	}
 
 	public void excluirItem(Integer rowIndex) {
-		objeto.getAlunosTurma().remove(rowIndex.intValue()); // exclui itens da coleção
+		objeto.getAlunosTurma().remove(rowIndex.intValue()); // exclui itens da
+																// coleção
 	}
 
 	public void gravarItem() {
+
 		if (this.rowIndex == null) {
-			alunosTurma.setTurma(objeto);
-			objeto.getAlunosTurma().add(alunosTurma); // adiciona itens na coleção
+			if (alunosTurma.getTurma().getTipoTurma() == "PARTICULAR") {
+				EntityManager em = ConexaoJPA.getEntityManager();
+				Query qry = em.createQuery("from alunosturma where turma = :turma");
+				qry.setParameter("turma", objeto);
+				List<Pessoa> list = qry.getResultList();
+				em.close();
+				if (list.size() <= 2) {
+					alunosTurma.setTurma(objeto);
+					objeto.getAlunosTurma().add(alunosTurma); // adiciona itens
+																// na coleção
+				} else {
+					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Turma Particular atingiu seu número máximo de alunos!", "");
+					FacesContext.getCurrentInstance().addMessage(null, mensagem);
+				}
+
+			} else {
+				if (this.rowIndex == null) {
+					alunosTurma.setTurma(objeto);
+					objeto.getAlunosTurma().add(alunosTurma); // adiciona itens
+																// na coleção
+				} else {
+					objeto.getAlunosTurma().set(rowIndex, alunosTurma); // altera
+																		// na
+																		// coleção
+				}
+				rowIndex = null;
+				alunosTurma = null;
+			}
 		} else {
-			objeto.getAlunosTurma().set(rowIndex, alunosTurma); // altera na coleção
+			objeto.getAlunosTurma().set(rowIndex, alunosTurma); // altera na
+																// coleção
 		}
 		rowIndex = null;
 		alunosTurma = null;
+
 	}
 
 	public void cancelarItem() {
 		rowIndex = null;
 		alunosTurma = null;
 	}
-
 
 	public AlunosTurma getAlunosTurma() {
 		return alunosTurma;
@@ -175,4 +209,5 @@ public class TurmaCrud {
 	public void setRowIndex(Integer rowIndex) {
 		this.rowIndex = rowIndex;
 	}
+
 }
