@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 
 import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Cidade;
@@ -48,17 +49,35 @@ public class AlunosCrud {
 
 		Query qry = em.createQuery("from Alunos where email = :email");
 		qry.setParameter("email", objeto.getEmail());
+		List<Alunos> listaEmail = qry.getResultList();
 		
-		List<Alunos> list = qry.getResultList();
+		Query query = em.createQuery("from Alunos where cpf = :cpf");
+		query.setParameter("cpf", objeto.getCpf());
+		List<Alunos> listaCpf = query.getResultList();
+		
+		Query qr = em.createQuery("from Alunos where rg = :rg");
+		qr.setParameter("rg", objeto.getRg());
+		List<Alunos> listaRg = qr.getResultList();
 
-		if (list.isEmpty()){
-			em.merge(objeto);
-			em.getTransaction().commit();
-			em.close();
-			return "AlunosList?faces-redirect=true";
-					
+		if (listaEmail.isEmpty()){
+			if(listaCpf.isEmpty()){
+				if(listaRg.isEmpty()){
+					em.merge(objeto);
+					em.getTransaction().commit();
+					em.close();
+					return "AlunosList?faces-redirect=true";
+				}else{
+					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "O RG informado já está cadastrado no sistema. Por favor, informe outro valor!", "");
+					FacesContext.getCurrentInstance().addMessage(null, mensagem);
+					return "";	
+				}
+			}else{
+				FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "O CPF informado já está cadastrado no sistema. Por favor, informe outro valor!", "");
+				FacesContext.getCurrentInstance().addMessage(null, mensagem);
+				return "";
+			}	
 		} else {
-			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email já cadastrado!", "");
+			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "O e-mail informado já está cadastrado no sistema. Por favor, informe outro e-mail!!", "");
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 			return "";				
 		}

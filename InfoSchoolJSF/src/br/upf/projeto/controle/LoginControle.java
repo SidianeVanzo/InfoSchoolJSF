@@ -9,6 +9,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
+
+import com.sun.faces.action.RequestMapping;
 
 import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
@@ -39,6 +42,8 @@ public class LoginControle implements Serializable {
 	 * 
 	 * @throws Exception
 	 */
+	
+
 	public String entrar() {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		Query qry = em.createQuery("from Pessoa where usuario = :usuario and senha = :senha");
@@ -53,6 +58,12 @@ public class LoginControle implements Serializable {
 			return "";
 		} else {
 			usuarioLogado = list.get(0);
+			
+			//pegando a sessão -> usuaário que esta logando
+			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+			session.setAttribute("usuario", usuarioLogado);
+			
+			
 			return "/faces/Sistema/Home/Home.xhtml";
 		}
 	}
