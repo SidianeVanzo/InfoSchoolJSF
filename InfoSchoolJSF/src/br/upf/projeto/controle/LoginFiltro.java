@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFiltro
  */
-@WebFilter(urlPatterns = { "/faces/Cadastros/*", "/faces/Sistema/*" })
+//@WebFilter(urlPatterns = { "/faces/Cadastros/*", "/faces/Sistema/*" })
 public class LoginFiltro implements Filter {
 
 	/**
@@ -41,11 +41,14 @@ public class LoginFiltro implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession sessao = httpRequest.getSession();
 		String contextPath = httpRequest.getContextPath();
+		/*
 		LoginControle lc = (LoginControle) sessao.getAttribute("loginControle");
 		if ((lc == null) || (lc.getUsuarioLogado() == null)) {
 			System.out.println("Redirecionar para : " + contextPath + "/faces/Login/LoginForm.xhtml");
 			httpResponse.sendRedirect(contextPath + "/faces/Login/LoginForm.xhtml");
 		}
+		*/ 
+		
 		chain.doFilter(request, response);
 	}
 
