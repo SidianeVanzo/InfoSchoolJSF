@@ -26,6 +26,8 @@
 		<authentication-provider>
 			<user-service>
 			<user name="um" password="um" authorities="ROLE_USER, ROLE_ADMIN" />
+			<user name="adm" password="123" authorities="ROLE_USER" />
+			<user name="maria" password="maria" authorities="ROLE_USER" />
 			<user name="dois" password="dois" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
