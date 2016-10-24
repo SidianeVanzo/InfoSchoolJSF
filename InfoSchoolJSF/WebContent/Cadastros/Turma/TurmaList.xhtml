@@ -23,8 +23,7 @@
 
 			<p:column headerText="Nome" sortBy="#{turma.nome}"
 				filterBy="#{turma.nome}" filterMatchMode="contains">
-				<h:outputText value="#{turma.nome}" 
-				/>
+				<h:outputText value="#{turma.nome}" />
 			</p:column>
 
 
@@ -35,24 +34,30 @@
 
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{turmaCrud.alterar(turma.id)}"
-					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
+					value="Alterar" ajax="false" icon="ui-icon-pencil" />
 			</p:column>
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{turmaCrud.excluir(turma.id)}"
 					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
+					onclick="if (!confirm('Confirma a exclusão?')) return false"
+					icon="ui-icon-trash" />
+			</p:column>
+			<p:column headerText="" width="90">
+				<p:commandButton id="botaoVerAula" value="Ver Aula"
+					onclick="PF('dialogoVerAula').show();" ajax="true" />
+			</p:column>
+			
+			<p:column headerText="" width="90">
+				<p:commandButton action="#{aulaCrud.incluir(null)}"
+					value="Incluir Aula" ajax="false" icon="ui-icon-pencil" />
 			</p:column>
 
 
 		</p:dataTable>
 		<p:commandButton id="botaoIncluir" value="Incluir"
-			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick"/>
+			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick" />
 
-		<p:commandButton id="botaoChamada" value="Chamada"
-			onclick="PF('dialogoChamada').show();" ajax="true" />
 
-		<p:commandButton id="botaoQuestionarios" value="Questionários"
-			onclick="PF('dialogoQuestionario').show();" ajax="true" />
 
 		<p:commandButton id="botaoFinalizarTurma"
 			value="Finalizar Turma e Emitir Relatório"
@@ -60,24 +65,15 @@
 
 	</h:form>
 
-	<p:dialog header="Cadastro de Chamadas" widgetVar="dialogoChamada"
+	<p:dialog header="Aulas" widgetVar="dialogoVerAulas"
 		height="400" width="800" resizable="false" modal="true">
 
-		<iframe name="frameCha" id="frameCha"
-			src="../Chamada/ChamadaList.xhtml"
+		<iframe name="frameAulaList" id="frameAulaList"
+			src="../Aula/AulaList.xhtml"
 			style="width: 100%; height: 100%; background-color: #FFFFFF;"
 			frameborder="0" />
 	</p:dialog>
 
-	<p:dialog header="Cadastro de Questionários"
-		widgetVar="dialogoQuestionario" height="400" width="800"
-		resizable="false" modal="true">
-
-		<iframe name="frameQues" id="frameQues"
-			src="../Questionario/QuestionarioList.xhtml"
-			style="width: 100%; height: 100%; background-color: #FFFFFF;"
-			frameborder="0" />
-	</p:dialog>
 
 </h:body>
 </html>

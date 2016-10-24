@@ -27,11 +27,6 @@
 				</div>
 			</f:facet>
 
-			<p:column headerText="Datas Aulas" sortBy="#{chamada.datasAulas}"
-				filterBy="#{chamada.datasAulas}" filterMatchMode="contains">
-				<h:outputText value="#{chamada.datasAulas}" />
-			</p:column>
-
 			
 			<p:column headerText="Provas" sortBy="#{chamada.provas}"
 				filterBy="#{chamada.provas}" filterMatchMode="contains">
@@ -43,11 +38,6 @@
 				<h:outputText value="#{chamada.comparecimentoAula}" />
 			</p:column>
 			
-			<p:column headerText="Turma" sortBy="#{chamada.turma}"
-				filterBy="#{chamada.turma.nome}" filterMatchMode="contains">
-				<h:outputText value="#{chamada.turma.nome}" />
-			</p:column>
-
 						
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{chamadaCrud.alterar(chamada.id)}"

@@ -1,5 +1,6 @@
 package br.upf.projeto.controle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,7 +12,9 @@ import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
 import br.upf.casca.ads.beans.classes.Alunos;
+import br.upf.casca.ads.beans.classes.Aula;
 import br.upf.casca.ads.beans.classes.Cidade;
+import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 @ManagedBean
@@ -44,42 +47,51 @@ public class AlunosCrud {
 	}
 
 	public String gravar() {
-		EntityManager em = ConexaoJPA.getEntityManager( );
+		EntityManager em = ConexaoJPA.getEntityManager();
 		em.getTransaction().begin();
 
-		Query qry = em.createQuery("from Alunos where email = :email");
-		qry.setParameter("email", objeto.getEmail());
-		List<Alunos> listaEmail = qry.getResultList();
+		List<Alunos> listaEmail = new ArrayList<Alunos>();
+		List<Alunos> listaCpf = new ArrayList<Alunos>();
+		List<Alunos> listaRg = new ArrayList<Alunos>();
 		
-		Query query = em.createQuery("from Alunos where cpf = :cpf");
-		query.setParameter("cpf", objeto.getCpf());
-		List<Alunos> listaCpf = query.getResultList();
-		
-		Query qr = em.createQuery("from Alunos where rg = :rg");
-		qr.setParameter("rg", objeto.getRg());
-		List<Alunos> listaRg = qr.getResultList();
+		if (objeto.getId() == null) {
+			Query qry = em.createQuery("from Alunos where email = :email");
+			qry.setParameter("email", objeto.getEmail());
+			listaEmail = qry.getResultList();
 
-		if (listaEmail.isEmpty()){
-			if(listaCpf.isEmpty()){
-				if(listaRg.isEmpty()){
+			Query query = em.createQuery("from Alunos where cpf = :cpf");
+			query.setParameter("cpf", objeto.getCpf());
+			listaCpf = query.getResultList();
+
+			Query qr = em.createQuery("from Alunos where rg = :rg");
+			qr.setParameter("rg", objeto.getRg());
+			listaRg = qr.getResultList();
+		}
+
+		if (listaEmail.isEmpty()) {
+			if (listaCpf.isEmpty()) {
+				if (listaRg.isEmpty()) {
 					em.merge(objeto);
 					em.getTransaction().commit();
 					em.close();
 					return "AlunosList?faces-redirect=true";
-				}else{
-					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "O RG informado já está cadastrado no sistema. Por favor, informe outro valor!", "");
+				} else {
+					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"O RG informado já está cadastrado no sistema. Por favor, informe outro valor!", "");
 					FacesContext.getCurrentInstance().addMessage(null, mensagem);
-					return "";	
+					return "";
 				}
-			}else{
-				FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "O CPF informado já está cadastrado no sistema. Por favor, informe outro valor!", "");
+			} else {
+				FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"O CPF informado já está cadastrado no sistema. Por favor, informe outro valor!", "");
 				FacesContext.getCurrentInstance().addMessage(null, mensagem);
 				return "";
-			}	
+			}
 		} else {
-			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "O e-mail informado já está cadastrado no sistema. Por favor, informe outro e-mail!!", "");
+			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"O e-mail informado já está cadastrado no sistema. Por favor, informe outro e-mail!!", "");
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
-			return "";				
+			return "";
 		}
 
 	}
@@ -128,7 +140,6 @@ public class AlunosCrud {
 	public void setAlunos(List<Alunos> alunos) {
 		this.alunos = alunos;
 	}
-
 
 	public String[] getListaTipo() {
 		return listaTipo;

@@ -56,7 +56,13 @@
 
 			</h:panelGrid>
 
-
+			<p:outputLabel value="Horário de Início: " for="horarioInicio" />
+			<p:calendar id="horarioInicio" value="#{turmaCrud.objeto.horarioInicio}" 
+				pattern="HH:mm" timeOnly="true"  />
+				
+			<p:outputLabel value="Horário de Fim: " for="horarioFim" />
+			<p:calendar id="horarioFim" value="#{turmaCrud.objeto.horarioFim}" 
+				pattern="HH:mm" timeOnly="true"  />	
 
 			<p:outputLabel value="Curso:  " for="inputCurso" />
 			<p:autoComplete id="inputCurso" style="width:600px" dropdown="true"

@@ -17,45 +17,29 @@
 				<p:outputLabel value="Chamada" />
 			</f:facet>
 
-			<p:outputLabel value="Inicio" for="horarioInicio" />
-			<p:calendar id="horarioInicio" value="#{chamadaCrud.objeto.horarioInicio}" pattern="HH:mm" timeOnly="true"  />
-   			<p:outputLabel value="Fim" for="horarioFim" />
-   			<p:calendar id="horarioFim" value="#{chamadaCrud.objeto.horarioFim}" pattern="HH:mm" timeOnly="true"  />
-   
-
-			<p:outputLabel value="Datas Aulas:" for="datasAulas" />
-			<p:calendar id="datasAulas"
-				value="#{chamadaCrud.objeto.datasAulas}" pattern="dd-MM-yyyy"
-				mask="true" />
-				
-				<p:outputLabel value="Conteudo das Aulas:" for="conteudoAula" />
-			<p:inputText id="conteudoAula" size="50"
-				value="#{chamadaCrud.objeto.conteudoAula}" />
-				
-					<p:outputLabel value="Provas:" for="provas" />
+			
+			<p:outputLabel value="Provas:" for="provas" />
 			<p:inputText id="provas" size="50"
 				value="#{chamadaCrud.objeto.provas}" />
 				
-					<p:outputLabel value="Notas das Provas:" for="notasProvas" />
+			<p:outputLabel value="Notas das Provas:" for="notasProvas" />
 			<p:inputText id="notasProvas" size="50"
 				value="#{chamadaCrud.objeto.notasProvas}" />
-				
-					<p:outputLabel value="Nota da Recuperação:" for="notaRecuperacao" />
-			<p:inputText id="notaRecuperacao" size="50"
-				value="#{chamadaCrud.objeto.notaRecuperacao}" />
-				
-					<p:outputLabel value="Comparecimento Aula:" for="comparecimentoAula" />
+	
+			<p:outputLabel value="Comparecimento Aula:" for="comparecimentoAula" />
 			<p:inputText id="comparecimentoAula" size="50"
 				value="#{chamadaCrud.objeto.comparecimentoAula}" />
-
-			<p:outputLabel value="Turma:  " for="inputTurma" />
-			<p:autoComplete id="inputTurma" style="width:600px"
-				dropdown="true" multiple="false" forceSelection="true" var="obj"
-				itemLabel="#{obj.nome}" itemValue="#{obj}"
-				value="#{chamadaCrud.objeto.turma}"
-				converter="turmaConverter"
-				completeMethod="#{chamadaCrud.completeTurma}" />
-
+				
+				
+				
+				
+				
+	
+				
+				
+				
+				
+				
 
 			<f:facet name="footer">
 				<p:commandButton value="Gravar" action="#{chamadaCrud.gravar}"
@@ -65,5 +49,12 @@
 			</f:facet>
 		</p:panelGrid>
 	</h:form>
+	
+	
+	
+	
+	
+	
+	
 </h:body>
 </html>

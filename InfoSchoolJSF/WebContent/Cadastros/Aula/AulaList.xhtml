@@ -9,7 +9,7 @@
 	<title>InfoSchool</title>
 </h:head>
 <h:body onload="#{aulaCrud.inicializarLista()}">
-	<h:form id="formLista">
+	<h:form id="formListaAula">
 		<p:dataTable var="aul" value="#{aulaCrud.aulas}">
 			<f:facet name="header">
 				<p:spacer height="30"></p:spacer>
@@ -18,18 +18,11 @@
 				</div>
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
-					<p:commandButton id="botaoIncluir" value="Incluir"
+					<p:commandButton id="botaoVer" value="Ver"
 						action="#{aulaCrud.incluir}" ajax="false" 
 						icon="ui-icon-plusthick"/>
 				</div>
 			</f:facet>
-
-			<p:column headerText="ID" sortBy="#{aul.id}" filterBy="#{aul.id}" filterMatchMode="exact">
-				<h:outputText value="#{aul.id}" />
-			</p:column>
-			<p:column headerText="Descrição" sortBy="#{aul.descricao}" filterBy="#{aul.descricao}" filterMatchMode="contains">
-				<h:outputText value="#{aul.descricao}" />
-			</p:column>
 			
 			<p:column headerText="Data" sortBy="#{aula.data}" filterBy="#{aula.data}" filterMatchMode="contains">
 				<h:outputText value="#{aula.data}"> 
@@ -37,16 +30,11 @@
 				</h:outputText>
 			</p:column>
 						
-			<p:column headerText="" width="90">
-				<p:commandButton action="#{aulaCrud.alterar(aul.id)}"
-					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
-			</p:column>
-			<p:column headerText="" width="90">
-				<p:commandButton action="#{aulaCrud.excluir(aul.id)}"
-					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
-			</p:column>
 		</p:dataTable>
 	</h:form>
+	
+	
+	
+	
 </h:body>
 </html>

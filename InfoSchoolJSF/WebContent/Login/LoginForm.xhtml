@@ -17,12 +17,6 @@
 	<!-- Compiled and minified JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-
- <meta name="_csrf_parameter" content="_csrf" />
-        <meta name="_csrf_header" content="X-CSRF-TOKEN" />
-        <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
-
 </h:head>
 <h:body styleClass="cyan lighten-5">
 	<div class="valign-wrapper" id="login-page">
@@ -36,33 +30,31 @@
 									src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS62TsezpLREsZpluxOMmHIfJYXBM6EGwhVtQUjL9ZL3uu6E8D_eA" />
 								<div class="left-align">
 								
-									<h:outputText value="Usuário e/	ou senha inválidos!"
-										rendered="#{param.error}"
-										style="color:darkred; font-size: 14px; padding-bottom: 10px;" />
-										
-									<form action="j_spring_security_check" method="post">
-										<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-										
+									<h:form>
+										<p:focus for="usuario" />
 										<p:growl></p:growl>
+
+
 
 										<div class="row">
 											<div class="col s12 input-field">
-												<h:outputLabel value="Usuário" for="j_username" />
-												<h:inputText id="j_username" size="15" maxlength="20"
+												<p:outputLabel value="Usuário" for="usuario" />
+												<p:inputText id="usuario" size="15" maxlength="20"
 													value="#{loginControle.usuario}" />
 											</div>
 											<div class="col s12 input-field">
-												<h:outputLabel value="Senha" for="j_password" />
-												<h:inputSecret id="j_password" size="15" maxlength="40"
+												<p:outputLabel value="Senha" for="senha" />
+												<p:password id="senha" size="15" maxlength="40"
 													value="#{loginControle.senha}" />
 											</div>
 											<div class="col s12 input-field">
-												<h:commandButton value="Entrar"
+												<p:commandButton value="Entrar" 
 													action="#{loginControle.entrar}" ajax="false" />
 											</div>
 										</div>
 
-									</form>
+
+									</h:form>
 								</div>
 							</div>
 						</div>

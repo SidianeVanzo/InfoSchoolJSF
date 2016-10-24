@@ -151,21 +151,8 @@ public class TurmaCrud {
 	public void gravarItem() {
 
 		if (this.rowIndex == null) {
-				EntityManager em = ConexaoJPA.getEntityManager();
-				Query qry = em.createQuery("SELECT * from alunosturma where turma_codigo= :turma_codigo");
-				qry.setParameter("turma_codigo", alunosTurma.getTurma());
-				List<Pessoa> list = qry.getResultList();
-				em.close();
-				if(list.size() < 2){
-					alunosTurma.setTurma(objeto);
-					objeto.getAlunosTurma().add(alunosTurma); // adiciona itens
-																// na coleção
-					
-				}else{
-					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Turma Particular atingiu seu número máximo de alunos!", "");
-					FacesContext.getCurrentInstance().addMessage(null, mensagem);
-				}
+			alunosTurma.setTurma(objeto);
+			objeto.getAlunosTurma().add(alunosTurma); // adiciona itens na coleção
 		} else {
 			objeto.getAlunosTurma().set(rowIndex, alunosTurma); // altera na
 																// coleção

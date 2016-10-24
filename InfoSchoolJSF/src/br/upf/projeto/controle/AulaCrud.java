@@ -5,11 +5,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
-import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Aula;
-import br.upf.casca.ads.beans.classes.Curso;
-import br.upf.casca.ads.beans.classes.Professor;
+import br.upf.casca.ads.beans.classes.Chamada;
+import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.classes.Turma;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
@@ -36,8 +36,11 @@ public class AulaCrud {
 		em.close();
 	}
 
-	public String incluir() {
-		objeto = new Aula();
+	public String incluir(Aula objeto) {
+		this.objeto = objeto;
+		if(objeto ==  null){
+			objeto = new Aula();
+		}
 		return "AulaForm?faces-redirect=true";
 
 	}

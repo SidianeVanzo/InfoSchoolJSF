@@ -57,13 +57,7 @@ public class LoginControle implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 			return "";
 		} else {
-			usuarioLogado = list.get(0);
-			
-			//pegando a sessão -> usuaário que esta logando
-			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-			session.setAttribute("usuario", usuarioLogado);
-			
-			
+			usuarioLogado = list.get(0);	
 			return "/faces/Sistema/Home/Home.xhtml";
 		}
 	}
