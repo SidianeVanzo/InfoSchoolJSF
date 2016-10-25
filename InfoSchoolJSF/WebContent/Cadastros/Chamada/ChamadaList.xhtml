@@ -9,7 +9,7 @@
  <title>InfoSchool</title>
  </h:head>
 <h:body onload="#{chamadaCrud.inicializarLista()}">
-	<h:form id="formLista">
+	<h:form style="font-size: 13px" id="formLista">
 		<p:dataTable var="chamada" value="#{chamadaCrud.chamadas}" paginator="true"
 			rows="10" rowsPerPageTemplate="5,10,15"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

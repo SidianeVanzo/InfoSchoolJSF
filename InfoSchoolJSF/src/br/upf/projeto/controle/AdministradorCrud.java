@@ -1,12 +1,17 @@
 package br.upf.projeto.controle;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.upf.casca.ads.beans.classes.Administrador;
+import br.upf.casca.ads.beans.classes.Diretor;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 @ManagedBean
@@ -33,10 +38,37 @@ public class AdministradorCrud {
 		 em.getTransaction().begin();
 
 		 objeto.setTipo("ADMINISTRADOR");
-		 em.merge(objeto);
-		 em.getTransaction().commit();
-		 em.close();
-		 return "AdministradorList?faces-redirect=true";
+		 List<Administrador> listaUsuario = new ArrayList<Administrador>();
+		 List<Administrador> listaEmail = new ArrayList<Administrador>();
+			
+			if (objeto.getId() == null) {
+				Query qry = em.createQuery("from Pessoa where usuario = :usuario");
+				qry.setParameter("usuario", objeto.getUsuario());
+				listaUsuario = qry.getResultList();
+				
+				Query query = em.createQuery("from Pessoa where email = :email");
+				query.setParameter("email", objeto.getEmail());
+				listaEmail = query.getResultList();
+			}
+
+			if (listaUsuario.isEmpty()) {
+				if(listaEmail.isEmpty()){
+						em.merge(objeto);
+						em.getTransaction().commit();
+						em.close();
+						return "AdministradorList?faces-redirect=true";
+				}else{
+					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"O e-mail informado já está cadastrado no sistema. Por favor, informe outro e-mail!!", "");
+					FacesContext.getCurrentInstance().addMessage(null, mensagem);
+					return "";
+				}
+			} else {
+				FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"O usuário informado já está cadastrado no sistema. Por favor, informe outro usuário!!", "");
+				FacesContext.getCurrentInstance().addMessage(null, mensagem);
+				return "";
+			}
 	}
 	
 	public String cancelar() {

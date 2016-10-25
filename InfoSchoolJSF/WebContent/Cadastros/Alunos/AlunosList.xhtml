@@ -9,7 +9,7 @@
  <title>InfoSchool</title>
  </h:head>
  <h:body onload="#{alunosCrud.inicializarLista()}"> 
-        <h:form id="formLista">
+        <h:form style="font-size: 13px" id="formLista">
 		<p:dataTable var="alunos" value="#{alunosCrud.alunos}"
 		paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -23,7 +23,8 @@
 					style="position: absolute; top: 12px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Incluir"
 						action="#{alunosCrud.incluir}" ajax="false" 
-						icon="ui-icon-plusthick" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+						icon="ui-icon-plusthick" 
+						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
 				</div>
 			</f:facet>
 
@@ -49,13 +50,13 @@
 			<p:column headerText="" width="40">
 				<p:commandButton action="#{alunosCrud.alterar(alunos.id)}"
 					 ajax="false" icon="ui-icon-pencil"
-					rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
 			</p:column>
 			<p:column headerText="" width="40">
 				<p:commandButton action="#{alunosCrud.excluir(alunos.id)}"
 					ajax="false"
 					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"
-					rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
 			</p:column>
 
 		</p:dataTable>

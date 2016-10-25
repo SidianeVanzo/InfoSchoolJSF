@@ -6,66 +6,41 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+</style>
 	<title>InfoSchool</title>
 </h:head>
 <h:body>
 	<p:layout fullPage="true">
-		<p:layoutUnit position="north" size="100" resizable="false">
+		<p:layoutUnit position="north" size="90" resizable="false">
 
-			<h:form id="formMenuBar">
+			<h:form style="font-size: 13px" id="formMenuBar">
 				<p:menubar>
 
 					<p:menuitem value="Home" url="/faces/Sistema/Home/Home.xhtml" />
-					<p:submenu label="Cadastros" icon="ui-icon-document">
 
-						<p:submenu label="Alunos" icon="ui-icon-contact">
-							<p:menuitem value="Alunos"
-								url="/faces/Cadastros/Alunos/AlunosList.xhtml" target="centro" />
-
-						</p:submenu>
-
-
-						<p:submenu label="Pessoas" icon="ui-icon-contact">
-							<p:menuitem value="Diretor"
-								url="/faces/Cadastros/Diretor/DiretorList.xhtml" target="centro" />
-							<p:menuitem value="Professor"
-								url="/faces/Cadastros/Professor/ProfessorList.xhtml"
-								target="centro" />
-							<p:menuitem value="Secretaria"
-								url="/faces/Cadastros/Secretaria/SecretariaList.xhtml"
-								target="centro" />
-						</p:submenu>
-
-						<p:submenu label="Turmas" icon="ui-icon-contact">
-							<p:menuitem value="Turma"
-								url="/faces/Cadastros/Turma/TurmaList.xhtml" target="centro" />
-						</p:submenu>
-
-						<p:menuitem value="Cidade"
-							url="/faces/Cadastros/Cidade/CidadeList.xhtml" target="centro" />
-						<p:menuitem value="Curso"
-							url="/faces/Cadastros/Curso/CursoList.xhtml" target="centro" />
-
-					</p:submenu>
-				
-					<p:submenu label="Relatórios">
-					<p:menuitem value="Cidades"
-							action="#{cidadeRel.executaRelatorio()}" ajax="false"
-							onclick="document.getElementById('formMenuBar').target='_blank';" >
-					</p:menuitem>
-					</p:submenu>
-					
 					<p:submenu label="Relatórios">
 						<p:menuitem value="Alunos"
-							url="/faces/FiltrosRel/AlunosFiltro.xhtml" target="centro" >
+							url="/faces/FiltrosRel/AlunosFiltro.xhtml" target="centro">
 						</p:menuitem>
-					</p:submenu>
-					
-					<p:submenu label="Relatórios">
-						<p:menuitem value="Curso"
-							action="#{cursoRel.executaRelatorio()}" ajax="false"
-							onclick="document.getElementById('formMenuBar').target='_blank';" >
-							</p:menuitem>
+
+						<p:menuitem value="Cidades"
+							action="#{cidadeRel.executaRelatorio()}" ajax="false"
+							onclick="document.getElementById('formMenuBar').target='_blank';">
+						</p:menuitem>
+
+						<p:menuitem value="Curso" action="#{cursoRel.executaRelatorio()}"
+							ajax="false"
+							onclick="document.getElementById('formMenuBar').target='_blank';">
+						</p:menuitem>
 					</p:submenu>
 
 					<p:submenu label="Ajuda">
@@ -73,15 +48,13 @@
 							url="/faces/Cadastros/Duvida Frequente/DuvidaFrequenteList.xhtml"
 							target="centro" />
 					</p:submenu>
-
-
 					<p:menuitem value="Sair" action="#{loginControle.sair()}" />
-					
+
 				</p:menubar>
 			</h:form>
 
 
-			<h:form target="centro">
+			<h:form style="font-size: 13px" target="centro">
 				<p:toolbar>
 					<p:toolbarGroup align="left">
 						<h:outputText style="font-size:14px;"
@@ -100,14 +73,13 @@
 				</p:toolbar>
 			</h:form>
 		</p:layoutUnit>
-		
+
 		<p:layoutUnit position="west" size="186" header="Menu"
 			resizable="true">
 
 
-			<h:form>
+			<h:form style="font-size: 13px">
 				<p:menu style="font-size:12px;">
-					<p:submenu label="Cadastros">
 						<p:submenu label="Alunos">
 							<p:menuitem value="Alunos"
 								url="/faces/Cadastros/Alunos/AlunosList.xhtml" target="centro" />
@@ -129,21 +101,25 @@
 							<p:menuitem value="Curso"
 								url="/faces/Cadastros/Curso/CursoList.xhtml" target="centro" />
 						</p:submenu>
-					</p:submenu>
 				</p:menu>
 			</h:form>
-	
-			
+
+
 		</p:layoutUnit>
-	
+
 		<p:layoutUnit position="center">
 			<iframe name="centro" id="centro"
 				style="width: 100%; height: 100%; background-color: #FFFFFF;"
 				frameborder="0" />
 		</p:layoutUnit>
-		 
+
 
 	</p:layout>
 
 </h:body>
 </html>
+
+
+
+
+
