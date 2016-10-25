@@ -20,7 +20,7 @@
 					style="position: absolute; top: 12px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Incluir"
 						action="#{cidadeCrud.incluir}" ajax="false" 
-						icon="ui-icon-plusthick"/>
+						icon="ui-icon-plusthick" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
 				</div>
 			</f:facet>
 
@@ -34,14 +34,15 @@
 				<h:outputText value="#{cid.uf}" />
 			</p:column>
 			
-			<p:column headerText="" width="90">
+			<p:column headerText="" width="40">
 				<p:commandButton action="#{cidadeCrud.alterar(cid.id)}"
-					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
+					ajax="false" icon="ui-icon-pencil" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
 			</p:column>
-			<p:column headerText="" width="90">
+			<p:column headerText="" width="40">
 				<p:commandButton action="#{cidadeCrud.excluir(cid.id)}"
-					value="Excluir" ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
+					ajax="false"
+					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"
+					rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
 			</p:column>
 		</p:dataTable>
 	</h:form>

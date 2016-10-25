@@ -23,6 +23,7 @@ public class LoginControle implements Serializable {
 
 	private String usuario;
 	private String senha;
+	private HttpSession session;
 	/**
 	 * Atributo para controle do usuário logado. É inicializado quando
 	 * informados usuario e senha válidos. Setado para null quando o usuário sair
@@ -57,7 +58,9 @@ public class LoginControle implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 			return "";
 		} else {
-			usuarioLogado = list.get(0);	
+			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+			usuarioLogado = list.get(0);
+			session.setAttribute("tipo", usuarioLogado.getTipo());	
 			return "/faces/Sistema/Home/Home.xhtml";
 		}
 	}

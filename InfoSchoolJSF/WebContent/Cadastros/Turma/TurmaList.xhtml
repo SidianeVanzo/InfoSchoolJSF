@@ -32,15 +32,15 @@
 				<h:outputText value="#{turma.tipoTurma}" />
 			</p:column>
 
-			<p:column headerText="" width="90">
+			<p:column headerText="" width="40">
 				<p:commandButton action="#{turmaCrud.alterar(turma.id)}"
-					value="Alterar" ajax="false" icon="ui-icon-pencil" />
+					ajax="false" icon="ui-icon-pencil" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
 			</p:column>
-			<p:column headerText="" width="90">
+			<p:column headerText="" width="40">
 				<p:commandButton action="#{turmaCrud.excluir(turma.id)}"
-					value="Excluir" ajax="false"
+					ajax="false"
 					onclick="if (!confirm('Confirma a exclusão?')) return false"
-					icon="ui-icon-trash" />
+					icon="ui-icon-trash" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
 			</p:column>
 			<p:column headerText="" width="90">
 				<p:commandButton id="botaoVerAula" value="Ver Aula"
@@ -49,19 +49,21 @@
 			
 			<p:column headerText="" width="90">
 				<p:commandButton action="#{aulaCrud.incluir(null)}"
-					value="Incluir Aula" ajax="false" icon="ui-icon-pencil" />
+					value="Nova Aula" ajax="false" icon="ui-icon-plusthick" />
 			</p:column>
 
 
 		</p:dataTable>
 		<p:commandButton id="botaoIncluir" value="Incluir"
-			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick" />
+			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick" 
+			rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
 
 
 
 		<p:commandButton id="botaoFinalizarTurma"
 			value="Finalizar Turma e Emitir Relatório"
-			action="#{questionarioCrud.incluir}" />
+			action="#{questionarioCrud.incluir}" 
+			rendered="#{session.getAttribute('tipo') eq 'PROFESSOR'}"/>
 
 	</h:form>
 

@@ -38,13 +38,13 @@
 			</p:column>
 
 
-			<p:column headerText="" width="90">
+			<p:column headerText="" width="40">
 				<p:commandButton action="#{administradorCrud.alterar(admin.id)}"
-					value="Alterar" ajax="false" icon="ui-icon-pencil"/>
+					ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
-			<p:column headerText="" width="90">
+			<p:column headerText="" width="40">
 				<p:commandButton action="#{administradorCrud.excluir(admin.id)}"
-					value="Excluir" ajax="false"
+					ajax="false"
 					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"/>
 			</p:column>
 		</p:dataTable>

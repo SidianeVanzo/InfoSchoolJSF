@@ -18,23 +18,27 @@
 				</div>
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
+					<!-- Mostra o botão somente se o usuario for == 'eq' a ADMINISTRADOR -->
+					<!-- Se quiser ser diferente, usa 'ne' para != -->
 					<p:commandButton id="botaoVer" value="Ver"
-						action="#{aulaCrud.incluir}" ajax="false" 
-						icon="ui-icon-plusthick"/>
+						action="#{aulaCrud.incluir(null)}" ajax="false"
+						icon="ui-icon-plusthick"
+						rendered="#{session.getAttribute('tipo') eq 'PROFESSOR'}" />
 				</div>
 			</f:facet>
-			
-			<p:column headerText="Data" sortBy="#{aula.data}" filterBy="#{aula.data}" filterMatchMode="contains">
-				<h:outputText value="#{aula.data}"> 
+
+			<p:column headerText="Data" sortBy="#{aula.data}"
+				filterBy="#{aula.data}" filterMatchMode="contains">
+				<h:outputText value="#{aula.data}">
 					<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
 				</h:outputText>
 			</p:column>
-						
+
 		</p:dataTable>
 	</h:form>
-	
-	
-	
-	
+
+
+
+
 </h:body>
 </html>
