@@ -61,7 +61,7 @@ public class LoginControle implements Serializable {
 			session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 			usuarioLogado = list.get(0);
 			session.setAttribute("tipo", usuarioLogado.getTipo());	
-			return "/faces/Sistema/Home/Home.xhtml";
+			return "/Sistema/Home/Home.xhtml";
 		}
 	}
 
@@ -74,7 +74,7 @@ public class LoginControle implements Serializable {
 		usuarioLogado = null;
 		FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Desconectado!", "");
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
-		return "/faces/Login/LoginForm.xhtml";
+		return "/Login/LoginForm.xhtml";
 	}
 
 	public String getUsuario() {

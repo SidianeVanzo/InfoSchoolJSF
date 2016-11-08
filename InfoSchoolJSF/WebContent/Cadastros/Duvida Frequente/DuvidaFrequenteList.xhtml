@@ -9,9 +9,34 @@
 	<title></title>
 </h:head>
 <h:body>
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
 
-	<font face="Arial" size="4"><b>Pergunta 1</b></font>
-	<br/>
-	<font face="Arial" size="3">Resposta 1</font>
+		<h3 style="margin-top: 0">Dúvida Frequente</h3>
+		<p:accordionPanel>
+			<p:tab title="1 - É possível adicionar alunos em uma turma que já tenha iniciado as aulas?">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:outputText value="Em turmas que já tenham iniciado suas aulas não será possível adicionar 
+					mais alunos, pois este sairá prejudicado." />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="2 - Como adicionar alunos em uma turma?">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:outputText value="Caso as aulas ainda não tenham iniciado, será 
+					possível adicionar mais alunos na turma da seguinte forma: encontre a listagem das turmas
+					em andamento da escola e clique no botão de editar da turma desejada. Quando aparecerá as 
+					informações da turma, será preciso encontrar os alunos já cadastrados, incluir um novo alunos e 
+					gravar as informações da turma. Pronto! Um novo aluno foi adicionado na turma!" />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="3 - É possível ver alunos de apenas uma cidade?">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:outputText value="Sim! Para ver os alunos de apenas uma cidade é necessário encontrar a opção 
+					Relatórios do sistema e escolher a opção Alunos. Informe a cidade desejada e clique em Gerar
+					Relatório. Serão listados apenas os alunos da cidade escolhida!" />
+				</h:panelGrid>
+			</p:tab>
+		</p:accordionPanel>
+	</h:form>
 </h:body>
 </html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-10-25T00:03:47 -->
+<!-- 2016-10-31T19:38:53 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cidade" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3bd2cbbb-c3e5-4841-80e8-6f75b13935aa">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -51,7 +51,7 @@ FROM
 				<text><![CDATA[InfoSchool]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="10" width="150" height="36" uuid="63a18ff7-0f2b-4ab8-969c-cf293661c5f1"/>
+				<reportElement x="10" y="32" width="150" height="36" uuid="63a18ff7-0f2b-4ab8-969c-cf293661c5f1"/>
 				<textElement>
 					<font size="26" isBold="true"/>
 				</textElement>

@@ -40,12 +40,6 @@
 					ajax="false" icon="ui-icon-pencil" 
 					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
 			</p:column>
-			<p:column headerText="" width="40">
-				<p:commandButton action="#{cidadeCrud.excluir(cid.id)}"
-					ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"
-					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
-			</p:column>
 		</p:dataTable>
 	</h:form>
 </h:body>

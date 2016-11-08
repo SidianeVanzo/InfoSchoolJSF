@@ -48,15 +48,14 @@
 			</p:column>
 			
 			<p:column headerText="" width="90">
-				<p:commandButton action="#{aulaCrud.incluir(null)}"
+				<p:commandButton action="#{aulaCrud.incluir(null, turma)}"
 					value="Nova Aula" ajax="false" icon="ui-icon-plusthick" />
 			</p:column>
 
 
 		</p:dataTable>
 		<p:commandButton id="botaoIncluir" value="Incluir"
-			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick" 
-			rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick"/>
 
 
 

@@ -61,7 +61,7 @@ public class LoginAdControle {
                return ""; 
         }else{ 
         	usuarioLogado = list.get(0); 
-            return "/faces/Ad_Sistema/HomeAd/HomeAd.xhtml"; 
+            return "/Ad_Sistema/HomeAd/HomeAd.xhtml"; 
         } 
  } 
 	
@@ -70,7 +70,7 @@ public class LoginAdControle {
          FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,  
                                                   "Usuario Desconectado!" , ""); 
          FacesContext.getCurrentInstance().addMessage(null, mensagem);                  
-         return "/faces/Login/LoginAdForm.xhtml"; 
+         return "/Login/LoginAdForm.xhtml"; 
   }    
 
 	

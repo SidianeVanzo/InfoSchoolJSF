@@ -41,7 +41,7 @@ public class LoginAdFiltro implements Filter {
          
         LoginAdControle lc = (LoginAdControle) sessao.getAttribute("loginAdControle"); 
         if ((lc == null) || (lc.getUsuarioLogado() == null)){  
-           httpResponse.sendRedirect(contextPath + "/faces/Login/LoginAdForm.xhtml"); 
+           httpResponse.sendRedirect(contextPath + "Login/LoginAdForm.xhtml"); 
         } 
 		
 		chain.doFilter(request, response);

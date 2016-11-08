@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-11-08T09:14:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AlunosTurma" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f1258fc7-153a-4b9f-839d-015556f94a34">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
+	<parameter name="TURMA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT alunos.nome as aluno,
+	alunos.email,
+	alunos.telefone,
+	turma.nome as turma,
+	cidade.nome as cidade
+FROM alunosturma
+	INNER JOIN alunos ON 
+	 alunosturma.alunos_id = alunos.id 
+	INNER JOIN turma ON 
+	 alunosturma.turma_codigo = turma.id 
+	INNER JOIN cidade ON 
+	 alunos.cidade_id = cidade.id
+	 WHERE turma.id =  $P!{TURMA}]]>
+	</queryString>
+	<field name="aluno" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="turma" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="230" height="40" uuid="401f5913-f5e6-4c11-984f-d593a12184c7"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alunos da Turma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="40" width="100" height="30" forecolor="#474444" uuid="00e8a025-6586-4868-bf95-0d26f3335cd5"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[InfoSchool]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="10" width="250" height="35" uuid="ce4eb218-64a9-4869-b6a4-bc2993a50d5c"/>
+				<textElement>
+					<font size="26"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="150" height="20" forecolor="#615C5C" uuid="57d13bf0-8596-4df9-b30a-94a1e1bb5965"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALUNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="150" y="0" width="180" height="20" forecolor="#615C5C" uuid="4d5f5a08-567b-42d6-8fd0-1fc0934a178a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="330" y="0" width="100" height="20" forecolor="#615C5C" uuid="d1134eb5-8fa6-4325-b6b0-38752e04adcc"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="430" y="0" width="123" height="20" forecolor="#615C5C" uuid="6de68476-399c-4517-9e45-b76d29c1fbca"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="16" width="555" height="1" uuid="b1b8d99d-0028-4823-8890-0eb524df2fb7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="150" height="20" uuid="a503fef2-c637-42d7-8729-aaa01415a3d6"/>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="180" height="20" uuid="2dfc61d0-9f63-470c-85ab-1b697fa675ad"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="100" height="20" uuid="2166c429-9414-4866-a8da-a09f7cbb06ec"/>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="2" width="123" height="20" uuid="c0127e1d-5ccd-49a8-8d8d-cb165d497fdc"/>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="10" width="197" height="20" uuid="330bee7f-05af-4d56-a280-08d4aeafc180"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="10" width="80" height="20" uuid="e529191b-7c2d-48a2-beb0-8a0a38a6333c"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="10" width="40" height="20" uuid="0014daad-c084-40dd-962e-c8658de3769c"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

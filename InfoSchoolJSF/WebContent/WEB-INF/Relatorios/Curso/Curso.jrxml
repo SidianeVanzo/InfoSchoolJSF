@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-10-24T21:55:02 -->
+<!-- 2016-11-07T21:29:38 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="73507e69-ac29-499e-835a-5b7eedc36691">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="Y3Vyc28gQVMgLDExNSw2NixiOGU0Y2M5My01YzA0LTRmOWEtYTU2NC05NDliMjM4MWJhNTk7"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<queryString>
 		<![CDATA[SELECT curso.cargahoraria,
 	curso.manha,
@@ -132,18 +132,18 @@ FROM curso]]>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="130" y="0" width="100" height="30" uuid="e2eb37c7-4dfc-4778-b41a-3e7d7d712e4b"/>
-				<textFieldExpression><![CDATA[$F{manha} != false ? "Manhã \n" + 
+				<textFieldExpression><![CDATA[($F{manha} != false ? "Manhã \n" : "") + 
 ( $F{tarde} != false ? "Tarde \n " : "")  + 
-( $F{noite} != false ? "Noite"  : "" ) : ""]]></textFieldExpression>
+( $F{noite} != false ? "Noite"  : "" ) ]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="260" y="0" width="100" height="30" uuid="a5e477ca-c625-4721-9847-b1682fc52f49"/>
-				<textFieldExpression><![CDATA[$F{segundafeira} != false ? "Segunda-Feira \n" + 
+				<textFieldExpression><![CDATA[($F{segundafeira} != false ? "Segunda-Feira \n" : "") + 
 ( $F{tercafeira} != false ? "Terça-Feira \n " : "")  + 
 ( $F{quartafeira} != false ? "Quarta-Feira \n " : "")  + 
 ( $F{quintafeira} != false ? "Quinta-Feira \n " : "")  + 
 ( $F{sextafeira} != false ? "Sexta-Feira \n " : "")  + 
-( $F{sabado} != false ? "Sábado"  : "" ) : ""]]></textFieldExpression>
+( $F{sabado} != false ? "Sábado"  : "" ) ]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

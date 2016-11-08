@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-11-07T21:29:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Professor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54782c30-aaa7-4a14-88b7-7a033fa60e40">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
+	<queryString>
+		<![CDATA[SELECT pessoa.email,
+	pessoa.nome,
+	pessoa.telefone,
+	professor.manha,
+	professor.noite,
+	professor.quartafeira,
+	professor.quintafeira,
+	professor.sabado,
+	professor.segundafeira,
+	professor.sextafeira,
+	professor.tarde,
+	professor.tercafeira
+FROM professor
+	INNER JOIN pessoa ON 
+	 professor.id = pessoa.id]]>
+	</queryString>
+	<field name="email" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="manha" class="java.lang.Boolean"/>
+	<field name="noite" class="java.lang.Boolean"/>
+	<field name="quartafeira" class="java.lang.Boolean"/>
+	<field name="quintafeira" class="java.lang.Boolean"/>
+	<field name="sabado" class="java.lang.Boolean"/>
+	<field name="segundafeira" class="java.lang.Boolean"/>
+	<field name="sextafeira" class="java.lang.Boolean"/>
+	<field name="tarde" class="java.lang.Boolean"/>
+	<field name="tercafeira" class="java.lang.Boolean"/>
+	<group name="nome">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+		<groupHeader>
+			<band height="75">
+				<rectangle>
+					<reportElement mode="Opaque" x="10" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="d7e5d7f5-3c08-4c45-a0fb-2a9d1595e22c"/>
+				</rectangle>
+				<textField>
+					<reportElement x="60" y="10" width="100" height="30" uuid="53a8b5c6-5b57-4e5a-a4c0-a9f5931540b2"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="50" width="100" height="20" forecolor="#635E5D" uuid="3e909d1d-9d00-464e-9a57-bc2dc3c724f6"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TELEFONE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="310" y="50" width="110" height="23" forecolor="#635E5D" uuid="5cd45973-8909-49cc-b2df-bc31c91e23c2"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TURNO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="50" width="130" height="20" forecolor="#635E5D" uuid="72330c8b-b4ec-48f7-b184-137e62863a11"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DIA DA SEMANA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="110" y="50" width="200" height="20" forecolor="#635E5D" uuid="9a8006ae-0f7d-49a5-bb57-4abf9c376165"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[E-MAIL]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="2" width="555" height="1" uuid="5c2876f9-b8a6-49c4-b64a-adb2b6e1bef9"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="9"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="160" height="40" uuid="972c3221-47bd-4893-9ae5-4498c91c20f9"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Professores]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="50" width="100" height="30" forecolor="#474444" uuid="7c6f26fb-bc35-49eb-9e52-7c5aa47c8ec7"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[InfoSchool]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="43" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="310" y="0" width="110" height="30" uuid="5eeb3a68-2783-4f49-b038-60383a65a55c"/>
+				<textFieldExpression><![CDATA[($F{manha} != false ? "Manhã \n" : "" )+ 
+( $F{tarde} != false ? "Tarde \n " : "")  + 
+( $F{noite} != false ? "Noite"  : "" )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="110" y="0" width="200" height="30" uuid="4a5e7615-131a-4ada-ae60-ad844bc1ab8e"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="10" y="0" width="100" height="30" uuid="d6de4895-fe55-43bc-9c2a-1cd76a1bce65"/>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="430" y="0" width="110" height="30" uuid="a83bfbcc-e882-4f0f-a503-944d5dda5165"/>
+				<textFieldExpression><![CDATA[($F{segundafeira} != false ? "Segunda-Feira \n" :  "")+ 
+( $F{tercafeira} != false ? "Terça-Feira \n " : "")  + 
+( $F{quartafeira} != false ? "Quarta-Feira \n " : "")  + 
+( $F{quintafeira} != false ? "Quinta-Feira \n " : "")  + 
+( $F{sextafeira} != false ? "Sexta-Feira \n " : "")  + 
+( $F{sabado} != false ? "Sábado"  : "" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="2" y="-1" width="197" height="20" uuid="7ca20661-03ef-4d2f-a14a-e3ef1fd32338"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="-1" width="80" height="20" uuid="6ecf7f28-0bdd-4e60-b1d3-15973873e9e8"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="-1" width="40" height="20" uuid="edb133e5-3b15-41b2-8f1d-e4f59320d933"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
