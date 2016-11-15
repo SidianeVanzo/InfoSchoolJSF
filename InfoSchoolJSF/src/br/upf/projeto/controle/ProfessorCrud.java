@@ -97,8 +97,10 @@ public class ProfessorCrud {
 	public String excluir(Integer id) {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		objeto = em.find(Professor.class, id);
+		objeto.setUsuario(" ");
+		objeto.setSenha(" ");
 		em.getTransaction().begin();
-		em.remove(objeto);
+		em.merge(objeto);
 		em.getTransaction().commit();
 		em.close();
 		return "ProfessorList?faces-redirect=true";

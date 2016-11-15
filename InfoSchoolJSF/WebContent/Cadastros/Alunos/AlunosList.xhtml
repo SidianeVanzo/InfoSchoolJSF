@@ -24,7 +24,7 @@
 					<p:commandButton id="botaoIncluir" value="Incluir"
 						action="#{alunosCrud.incluir}" ajax="false" 
 						icon="ui-icon-plusthick" 
-						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
+						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}"/>
 				</div>
 			</f:facet>
 
@@ -47,16 +47,18 @@
 			</p:column>
 			
 			
-			<p:column headerText="" width="40">
+			<p:column headerText="Editar" width="40"
+			rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 				<p:commandButton action="#{alunosCrud.alterar(alunos.id)}"
-					 ajax="false" icon="ui-icon-pencil"
-					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
+					 ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
-			<p:column headerText="" width="40">
+			
+			<p:column headerText="Cancelar" width="40"
+			rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 				<p:commandButton action="#{alunosCrud.excluir(alunos.id)}"
 					ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false" icon="ui-icon-trash"
-					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
+					onclick="if (!confirm('Confirma o cancelamento do aluno?')) return false" icon="ui-icon-trash"
+					disabled="#{alunos.tipoAluno eq 'CANCELADO'}"/>
 			</p:column>
 
 		</p:dataTable>

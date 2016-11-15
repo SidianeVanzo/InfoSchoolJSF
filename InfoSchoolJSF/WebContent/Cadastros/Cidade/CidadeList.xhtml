@@ -21,7 +21,7 @@
 					<p:commandButton id="botaoIncluir" value="Incluir"
 						action="#{cidadeCrud.incluir}" ajax="false" 
 						icon="ui-icon-plusthick" 
-						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
+						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}"/>
 				</div>
 			</f:facet>
 
@@ -35,10 +35,10 @@
 				<h:outputText value="#{cid.uf}" />
 			</p:column>
 			
-			<p:column headerText="" width="40">
+			<p:column headerText="Editar" width="40"
+			rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 				<p:commandButton action="#{cidadeCrud.alterar(cid.id)}"
-					ajax="false" icon="ui-icon-pencil" 
-					rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA')}"/>
+					ajax="false" icon="ui-icon-pencil" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

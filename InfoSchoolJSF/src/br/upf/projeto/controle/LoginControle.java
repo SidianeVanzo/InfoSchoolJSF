@@ -74,12 +74,17 @@ public class LoginControle implements Serializable {
 		usuarioLogado = null;
 		FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Desconectado!", "");
 		FacesContext.getCurrentInstance().addMessage(null, mensagem);
-		return "/Login/LoginForm.xhtml";
+		return "/Sistema/Home/Inicio.xhtml";
 	}
 
 	public String getUsuario() {
 		return usuario;
 	}
+	
+	public String acessoLogin(){
+		return "/Login/LoginForm.xhtml";
+	}
+
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;

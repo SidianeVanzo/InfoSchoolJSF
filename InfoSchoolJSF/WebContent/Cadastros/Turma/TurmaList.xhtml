@@ -19,6 +19,12 @@
 				<div align="left" style="position: absolute; top: 20px; width: 95%;">
 					<p:outputLabel value="Listagem de Turmas"></p:outputLabel>
 				</div>
+				<div align="right"
+					style="position: absolute; top: 12px; width: 95%;">
+					<p:commandButton id="botaoIncluir" value="Incluir"
+						action="#{turmaCrud.incluir}" icon="ui-icon-plusthick"
+						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}" />
+				</div>
 			</f:facet>
 
 			<p:column headerText="Nome" sortBy="#{turma.nome}"
@@ -32,42 +38,37 @@
 				<h:outputText value="#{turma.tipoTurma}" />
 			</p:column>
 
-			<p:column headerText="" width="40">
+			<p:column headerText="Editar" width="40"
+				rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 				<p:commandButton action="#{turmaCrud.alterar(turma.id)}"
-					ajax="false" icon="ui-icon-pencil" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
+					ajax="false" icon="ui-icon-pencil" />
 			</p:column>
-			<p:column headerText="" width="40">
-				<p:commandButton action="#{turmaCrud.excluir(turma.id)}"
-					ajax="false"
-					onclick="if (!confirm('Confirma a exclusão?')) return false"
-					icon="ui-icon-trash" rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}"/>
-			</p:column>
-			<p:column headerText="" width="90">
-				<p:commandButton id="botaoVerAula" value="Ver Aula"
+
+			<p:column headerText="Ver Aula" width="90"
+				rendered="#{(session.getAttribute('tipo') eq 'PROFESSOR') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
+				<p:commandButton id="botaoVerAula" icon="ui-icon-circle-triangle-e"
 					onclick="PF('dialogoVerAula').show();" ajax="true" />
 			</p:column>
-			
-			<p:column headerText="" width="90">
+
+			<p:column headerText="Nova Aula" width="90"
+				rendered="#{(session.getAttribute('tipo') eq 'PROFESSOR') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 				<p:commandButton action="#{aulaCrud.incluir(null, turma)}"
-					value="Nova Aula" ajax="false" icon="ui-icon-plusthick" />
+					ajax="false" icon="ui-icon-plusthick"/>
+			</p:column>
+
+			<p:column headerText="Finalizar" width="90"
+				rendered="#{(session.getAttribute('tipo') eq 'PROFESSOR') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
+				<p:commandButton id="botaoFinalizarTurma" icon="ui-icon-power"
+					action="#{turmaCrud.finalizarTurma(turma.id)}"
+					disabled="#{turma.tipoTurma eq 'FINALIZADA'}" />
 			</p:column>
 
 
 		</p:dataTable>
-		<p:commandButton id="botaoIncluir" value="Incluir"
-			action="#{turmaCrud.incluir}" icon="ui-icon-plusthick"/>
-
-
-
-		<p:commandButton id="botaoFinalizarTurma"
-			value="Finalizar Turma e Emitir Relatório"
-			action="#{questionarioCrud.incluir}" 
-			rendered="#{session.getAttribute('tipo') eq 'PROFESSOR'}"/>
-
 	</h:form>
 
-	<p:dialog header="Aulas" widgetVar="dialogoVerAulas"
-		height="400" width="800" resizable="false" modal="true">
+	<p:dialog header="Aulas" widgetVar="dialogoVerAulas" height="400"
+		width="800" resizable="false" modal="true">
 
 		<iframe name="frameAulaList" id="frameAulaList"
 			src="../Aula/AulaList.xhtml"

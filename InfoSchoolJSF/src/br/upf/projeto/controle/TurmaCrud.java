@@ -37,20 +37,25 @@ public class TurmaCrud {
 
 	public List<Professor> completeProfessor(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		List<Professor> results = em.createQuery(
-				"from Professor where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
+		List<Professor> results = em
+				.createQuery("from Professor where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' "
+						+ "AND length(trim(senha)) > 0 AND length(trim(usuario)) > 0" + "order by nome")
+				
 				.getResultList();
 		em.close();
 		return results;
 	}
 
 	public List<Alunos> completeAlunos(String query) {
-		EntityManager em = ConexaoJPA.getEntityManager();
-		List<Alunos> results = em.createQuery(
-				"from Alunos where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
-				.getResultList();
-		em.close();
-		return results;
+		if (objeto.getTipoTurma().equals("PARTICULAR") && objeto.getAlunosTurma().size() >= 2) {
+			return new ArrayList();
+		} else {
+			EntityManager em = ConexaoJPA.getEntityManager();
+			List<Alunos> results = em.createQuery("from Alunos where upper(nome) like " + "'"
+					+ query.trim().toUpperCase() + "%' AND tipoaluno <> 'CANCELADO' " + listaID() + "order by nome").getResultList();
+			em.close();
+			return results;
+		}
 	}
 
 	public void inicializarLista() {
@@ -96,6 +101,38 @@ public class TurmaCrud {
 		return "TurmaList?faces-redirect=true";
 	}
 
+	private String listaID() {
+		StringBuilder sb = new StringBuilder();
+		boolean primeiro = true;
+		try {
+			for (AlunosTurma at : objeto.getAlunosTurma()) {
+				if (!primeiro) {
+					sb.append(",");
+				} else {
+					sb.append("AND id NOT IN (");
+				}
+				sb.append(at.getAlunos().getId());
+				primeiro = false;
+			}
+			if (!primeiro) {
+				sb.append(")");
+			}
+		} catch (Exception e) {
+		}
+		return sb.toString();
+	}
+	
+	public void finalizarTurma(int id){
+
+		EntityManager em = ConexaoJPA.getEntityManager();
+		Turma turma = em.find(Turma.class, id); 
+		turma.setTipoTurma("FINALIZADA");
+		em.getTransaction().begin();
+		em.merge(turma);
+		em.getTransaction().commit();
+		em.close();
+	}
+
 	public TurmaCrud() {
 		super();
 		objeto = new Turma();
@@ -135,6 +172,7 @@ public class TurmaCrud {
 	public void incluirItem() {
 		rowIndex = null;
 		alunosTurma = new AlunosTurma();
+
 	}
 
 	public void alterarItem(Integer rowIndex) {
@@ -152,7 +190,8 @@ public class TurmaCrud {
 
 		if (this.rowIndex == null) {
 			alunosTurma.setTurma(objeto);
-			objeto.getAlunosTurma().add(alunosTurma); // adiciona itens na coleção
+			objeto.getAlunosTurma().add(alunosTurma); // adiciona itens na
+														// coleção
 		} else {
 			objeto.getAlunosTurma().set(rowIndex, alunosTurma); // altera na
 																// coleção

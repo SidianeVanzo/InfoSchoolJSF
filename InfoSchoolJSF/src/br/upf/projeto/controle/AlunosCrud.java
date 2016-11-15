@@ -107,11 +107,12 @@ public class AlunosCrud {
 		return "AlunosForm?faces-redirect=true";
 	}
 
-	public String excluir(Integer id) {
+	public String excluir(int id) {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		objeto = em.find(Alunos.class, id);
+		Alunos aluno = em.find(Alunos.class, id); 
+		aluno.setTipoAluno("CANCELADO");
 		em.getTransaction().begin();
-		em.remove(objeto);
+		em.merge(aluno);
 		em.getTransaction().commit();
 		em.close();
 		return "AlunosList?faces-redirect=true";

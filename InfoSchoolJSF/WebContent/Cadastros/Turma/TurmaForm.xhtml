@@ -57,12 +57,13 @@
 			</h:panelGrid>
 
 			<p:outputLabel value="Horário de Início: " for="horarioInicio" />
-			<p:calendar id="horarioInicio" value="#{turmaCrud.objeto.horarioInicio}" 
-				pattern="HH:mm" timeOnly="true"  />
-				
+			<p:calendar id="horarioInicio"
+				value="#{turmaCrud.objeto.horarioInicio}" pattern="HH:mm"
+				timeOnly="true" />
+
 			<p:outputLabel value="Horário de Fim: " for="horarioFim" />
-			<p:calendar id="horarioFim" value="#{turmaCrud.objeto.horarioFim}" 
-				pattern="HH:mm" timeOnly="true"  />	
+			<p:calendar id="horarioFim" value="#{turmaCrud.objeto.horarioFim}"
+				pattern="HH:mm" timeOnly="true" />
 
 			<p:outputLabel value="Curso:  " for="inputCurso" />
 			<p:autoComplete id="inputCurso" style="width:600px" dropdown="true"
@@ -72,10 +73,9 @@
 				completeMethod="#{turmaCrud.completeCurso}" />
 
 			<p:outputLabel value="Tipo Turma:" for="tipoTurma" />
-			<p:selectOneMenu id="tipoTurma"
-					value="#{turmaCrud.objeto.tipoTurma}">
-					<f:selectItems value="#{turmaCrud.listaTipo}" />
-				</p:selectOneMenu>
+			<p:selectOneMenu id="tipoTurma" value="#{turmaCrud.objeto.tipoTurma}">
+				<f:selectItems value="#{turmaCrud.listaTipo}" />
+			</p:selectOneMenu>
 
 			<p:outputLabel value="Professor:  " for="inputProfessor" />
 			<p:autoComplete id="inputProfessor" style="width:600px"
@@ -99,7 +99,8 @@
 						style="position: relative; height: 10px; top: -12px; width: 95%;">
 						<p:commandButton id="botaoIncluir" value="Incluir" ajax="true"
 							actionListener="#{turmaCrud.incluirItem}" update=":formAlunos"
-							onclick="PF('dialogoAlunos').show();" />
+							onclick="PF('dialogoAlunos').show();"
+							rendered="#{turmaCrud.objeto.id eq null}" />
 					</div>
 				</f:facet>
 				<p:column headerText="Aluno">
@@ -111,7 +112,8 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="" width="60">
+				<p:column headerText="" width="60"
+					rendered="#{turmaCrud.objeto.id eq null}">
 					<p:commandButton
 						actionListener="#{turmaCrud.alterarItem(rowIndex)}"
 						value="Alterar" ajax="true" update=":formAlunos"
@@ -120,11 +122,10 @@
 				<p:column headerText="" width="60">
 					<p:commandButton
 						actionListener="#{turmaCrud.excluirItem(rowIndex)}"
-						value="Excluir" ajax="true" 
-						update=":formEditar:tabelaAlunos"
+						value="Excluir" ajax="true" update=":formEditar:tabelaAlunos"
 						onclick="if (!confirm('Confirma a exclusão?')) return false">
 					</p:commandButton>
-					</p:column>
+				</p:column>
 			</p:dataTable>
 
 

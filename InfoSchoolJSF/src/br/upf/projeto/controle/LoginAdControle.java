@@ -70,8 +70,11 @@ public class LoginAdControle {
          FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,  
                                                   "Usuario Desconectado!" , ""); 
          FacesContext.getCurrentInstance().addMessage(null, mensagem);                  
-         return "/Login/LoginAdForm.xhtml"; 
+         return "/Sistema/Home/Inicio.xhtml"; 
   }    
 
-	
+	 public String acessoLogin(){
+			return "/Login/LoginAdForm.xhtml";
+		}
+
 }
