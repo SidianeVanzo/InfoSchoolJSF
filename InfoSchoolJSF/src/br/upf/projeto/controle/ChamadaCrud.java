@@ -19,42 +19,41 @@ public class ChamadaCrud {
 
 	private Chamada objeto;
 	private List<Chamada> chamadas;
-		
+
 	public List<Turma> completeTurma(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		 List<Turma> results = em.createQuery(
-		 "from Turma where upper(nome) like "+
-		"'"+query.trim().toUpperCase()+"%' "+
-		 "order by nome").getResultList();
-		 em.close();
-		 return results;
+		List<Turma> results = em.createQuery(
+				"from Turma where upper(nome) like " + "'" + query.trim().toUpperCase() + "%' " + "order by nome")
+				.getResultList();
+		em.close();
+		return results;
 	}
-	
-	public void inicializarLista(){
+
+	public void inicializarLista() {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		chamadas = em.createQuery("from Chamada").getResultList();
 		em.close();
 	}
-	
-	public String incluir(){
+
+	public String incluir() {
 		objeto = new Chamada();
 		return "ChamadaForm?faces-redirect=true";
-		
+
 	}
-	
-	public String gravar(){
+
+	public String gravar() {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		 em.getTransaction().begin();
-		 em.merge(objeto);
-		 em.getTransaction().commit();
-		 em.close();
-		 return "ChamadaList?faces-redirect=true";
+		em.getTransaction().begin();
+		em.merge(objeto);
+		em.getTransaction().commit();
+		em.close();
+		return "ChamadaList?faces-redirect=true";
 	}
-	
+
 	public String cancelar() {
-		 return "ChamadaList";
+		return "ChamadaList";
 	}
-	
+
 	public String alterar(Integer id) {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		objeto = em.find(Chamada.class, id);
@@ -95,17 +94,5 @@ public class ChamadaCrud {
 	public void setChamadas(List<Chamada> chamadas) {
 		this.chamadas = chamadas;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
 }

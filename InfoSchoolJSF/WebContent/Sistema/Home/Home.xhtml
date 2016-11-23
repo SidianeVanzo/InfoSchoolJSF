@@ -25,36 +25,26 @@
 			<h:form style="font-size: 13px" id="formMenuBar">
 				<p:menubar>
 
-					<p:menuitem value="Home" url="/Sistema/Home/TelaPrincipal.xhtml" target="centro"/>
+					<p:menuitem value="Home" url="/Sistema/Home/TelaPrincipal.xhtml"
+						target="centro" />
 
 					<p:submenu label="Relatórios">
-						<p:menuitem value="Alunos"
-							url="/FiltrosRel/AlunosFiltro.xhtml" target="centro">
+						<p:menuitem value="Alunos" url="/FiltrosRel/AlunosFiltro.xhtml"
+							target="centro">
 						</p:menuitem>
-						
+
 						<p:menuitem value="Alunos das Turmas"
 							url="/FiltrosRel/AlunosTurmaFiltro.xhtml" target="centro">
 						</p:menuitem>
 						
-						<p:menuitem value="Situação de Alunos das Turmas"
-							url="/FiltrosRel/AlunosTurmaFiltro.xhtml" target="centro">
+						<p:menuitem value="Turmas dos Alunos"
+							url="/FiltrosRel/TurmaAlunosFiltro.xhtml" target="centro">
 						</p:menuitem>
 						
-						<p:menuitem value="Professores"
-							action="#{professorRel.executaRelatorio()}" ajax="false"
-							onclick="document.getElementById('formMenuBar').target='_blank';">
+						<p:menuitem value="Finalizar Turma"
+							url="/FiltrosRel/FinalizarTurmaFiltro.xhtml" target="centro"
+							>
 						</p:menuitem>
-						
-						<p:menuitem value="Diretores"
-							action="#{diretorRel.executaRelatorio()}" ajax="false"
-							onclick="document.getElementById('formMenuBar').target='_blank';">
-						</p:menuitem>
-						
-						<p:menuitem value="Secretárias"
-							action="#{secretariaRel.executaRelatorio()}" ajax="false"
-							onclick="document.getElementById('formMenuBar').target='_blank';">
-						</p:menuitem>
-						
 
 						<p:menuitem value="Cidades"
 							action="#{cidadeRel.executaRelatorio()}" ajax="false"
@@ -65,24 +55,26 @@
 							ajax="false"
 							onclick="document.getElementById('formMenuBar').target='_blank';">
 						</p:menuitem>
-						
-						<p:menuitem value="Diretor" action="#{diretorRel.executaRelatorio()}"
-							ajax="false"
+
+						<p:menuitem value="Diretor"
+							action="#{diretorRel.executaRelatorio()}" ajax="false"
 							onclick="document.getElementById('formMenuBar').target='_blank';"
 							rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}">
 						</p:menuitem>
-						
-						<p:menuitem value="Secretária" action="#{secretariaRel.executaRelatorio()}"
-							ajax="false"
+
+						<p:menuitem value="Secretária"
+							action="#{secretariaRel.executaRelatorio()}" ajax="false"
 							onclick="document.getElementById('formMenuBar').target='_blank';"
 							rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}">
 						</p:menuitem>
-						
-						<p:menuitem value="Professor" action="#{professorRel.executaRelatorio()}"
-							ajax="false"
+
+						<p:menuitem value="Professor"
+							action="#{professorRel.executaRelatorio()}" ajax="false"
 							onclick="document.getElementById('formMenuBar').target='_blank';"
 							rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}">
 						</p:menuitem>
+
+						
 					</p:submenu>
 
 					<p:submenu label="Ajuda">
@@ -102,7 +94,7 @@
 						<h:outputText style="font-size:14px;"
 							value="Bem Vindo, #{loginControle.usuarioLogado.nome}"></h:outputText>
 					</p:toolbarGroup>
-					
+
 				</p:toolbar>
 			</h:form>
 		</p:layoutUnit>
@@ -112,22 +104,27 @@
 
 
 			<h:form style="font-size: 13px">
-				<p:menu style="font-size:12px;">
-						<p:submenu label="Cursos">
-							<p:menuitem value="Alunos"
-								url="/Cadastros/Alunos/AlunosList.xhtml" target="centro" />
-							<p:menuitem value="Turma"
-								url="/Cadastros/Turma/TurmaList.xhtml" target="centro" />
-							<p:menuitem value="Curso"
-								url="/Cadastros/Curso/CursoList.xhtml" target="centro" />
-
+				<p:panelMenu style="width:200px">
+					<p:submenu label="Cursos">
+						<p:menuitem value="Alunos"
+							url="/Cadastros/Alunos/AlunosList.xhtml" target="centro" />
+						<p:submenu label="Turmas">
+							<p:menuitem value="Turmas" url="/Cadastros/Turma/TurmaList.xhtml"
+								target="centro" />
+							<p:menuitem value="Finalizar Turma"
+								url="/FiltrosRel/FinalizarTurmaFiltro.xhtml" target="centro">
+							</p:menuitem>
 						</p:submenu>
+						<p:menuitem value="Curso" url="/Cadastros/Curso/CursoList.xhtml"
+							target="centro" />
 
-						<p:submenu label="Cidade">
-							<p:menuitem value="Cidade"
-								url="/Cadastros/Cidade/CidadeList.xhtml" target="centro" />
-						</p:submenu>
-				</p:menu>
+					</p:submenu>
+
+					<p:submenu label="Cidade">
+						<p:menuitem value="Cidade"
+							url="/Cadastros/Cidade/CidadeList.xhtml" target="centro" />
+					</p:submenu>
+				</p:panelMenu>
 			</h:form>
 
 
@@ -138,7 +135,9 @@
 				style="width: 100%; height: 100%; background-color: #FFFFFF;"
 				frameborder="0" />
 		</p:layoutUnit>
+
 	</p:layout>
+
 </h:body>
 </html>
 

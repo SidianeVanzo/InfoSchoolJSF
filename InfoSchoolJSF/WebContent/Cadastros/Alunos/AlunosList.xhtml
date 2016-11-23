@@ -32,17 +32,17 @@
 				<h:outputText value="#{alunos.nome}" />
 			</p:column>
 			
-			<p:column headerText="Telefone" sortBy="#{alunos.telefone}" filterBy="#{alunos.telefone}" filterMatchMode="contains">
+			<p:column headerText="Telefone" width="160" sortBy="#{alunos.telefone}" filterBy="#{alunos.telefone}" filterMatchMode="contains">
 				<h:outputText value="#{alunos.telefone}" />
 			</p:column>
 			
-			<p:column headerText="Data de Nascimento" sortBy="#{alunos.dataNascimento}" filterBy="#{alunos.dataNascimento}" filterMatchMode="contains">
+			<p:column headerText="Data de Nascimento" width="160" sortBy="#{alunos.dataNascimento}" filterBy="#{alunos.dataNascimento}" filterMatchMode="contains">
 				<h:outputText value="#{alunos.dataNascimento}"> 
 					<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
 				</h:outputText>
 			</p:column>
 						
-			<p:column headerText="Tipo de Aluno" sortBy="#{alunos.tipoAluno}" filterBy="#{alunos.tipoAluno}" filterMatchMode="contains">
+			<p:column headerText="Tipo de Aluno" width="120" sortBy="#{alunos.tipoAluno}" filterBy="#{alunos.tipoAluno}" filterMatchMode="contains">
 				<h:outputText value="#{alunos.tipoAluno}" />
 			</p:column>
 			
@@ -53,7 +53,7 @@
 					 ajax="false" icon="ui-icon-pencil"/>
 			</p:column>
 			
-			<p:column headerText="Cancelar" width="40"
+			<p:column headerText="Cancelar" width="55"
 			rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 				<p:commandButton action="#{alunosCrud.excluir(alunos.id)}"
 					ajax="false"

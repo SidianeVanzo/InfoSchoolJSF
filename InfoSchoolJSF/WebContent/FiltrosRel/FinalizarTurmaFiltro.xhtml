@@ -13,21 +13,21 @@
 		<p:growl></p:growl>
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Filtro de Alunos" />
+				<p:outputLabel value="Finalizar Turma" />
 			</f:facet>
 			
 			<p:outputLabel value="Turma:  " for="inputTurma" />
 			<p:autoComplete id="inputTurma" style="width:600px" dropdown="true"
 				multiple="false" forceSelection="true" var="obj"
 				itemLabel="#{obj.nome}" itemValue="#{obj}"
-				value="#{alunosTurmaRel.turma}"
+				value="#{finalizarTurmaRel.turma}"
 				converter="turmaConverter"
-				completeMethod="#{alunosTurmaRel.completeTurma}" />
+				completeMethod="#{finalizarTurmaRel.completeTurma}" />
 				
 			
 			<f:facet name="footer">
 				<p:commandButton value="Gerar Relatório"
-					action="#{alunosTurmaRel.executaRelatorio}" ajax="false" />
+					action="#{finalizarTurmaRel.executaRelatorio}" ajax="false" />
 			</f:facet>
 		</p:panelGrid>
 	</h:form>

@@ -3,19 +3,16 @@ package br.upf.projeto.controle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
-import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.AlunosTurma;
 import br.upf.casca.ads.beans.classes.Aula;
 import br.upf.casca.ads.beans.classes.Chamada;
-import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.classes.Turma;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
+import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
@@ -25,7 +22,8 @@ public class AulaCrud {
 	private Turma turma;
 	private List<Aula> aulas;
 	private List<Chamada> listChamada;
-
+	private String prova;
+	
 	public List<Turma> completeTurma(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		List<Turma> results = em.createQuery(
@@ -42,11 +40,15 @@ public class AulaCrud {
 	}
 
 	public String incluir(Aula objeto, Turma turma) {
+		//this.objeto = objeto;
 		this.objeto = new Aula();
 		this.turma = turma;
-		if(objeto ==  null){
-			objeto = new Aula();
+		if(this.objeto ==  null){
+			this.objeto = new Aula();
+			this.objeto.setChamada(new ArrayList<>());
 		}		
+		this.objeto.setData(new Date());	
+		
 		iniciaChamada();
 		return "/Cadastros/Aula/AulaForm?faces-redirect=true";		
 	}
@@ -56,14 +58,12 @@ public class AulaCrud {
 		
 		objeto.setChamada(listChamada);
 		objeto.setTurma(turma);
-		objeto.setData(new Date());
-		objeto.setDescricao("Teste");
-		
+			
 		em.getTransaction().begin();
 		em.merge(objeto);
 		em.getTransaction().commit();
 		em.close();
-		return "AulaList?faces-redirect=true";
+		return "/Cadastros/Turma/TurmaList?faces-redirect=true";
 	}
 
 	public String cancelar() {
@@ -104,12 +104,28 @@ public class AulaCrud {
 				Chamada chamada = new Chamada();
 				chamada.setAluno(aluno.getAlunos());
 				chamada.setComparecimentoAula(false);
-				chamada.setNotasProvas(0.00);
-				chamada.setProvas("AAAAA");					
+				chamada.setNotasProvas(0.00);				
 				listChamada.add(chamada);
 			}
 		}
-		//objeto.set
+	}
+	
+	public String listaAulasTurma(int idTurma){
+		EntityManager em = ConexaoJPA.getEntityManager();
+		aulas = em.createQuery("from Aula WHERE turma_id = "+idTurma).getResultList();
+		em.close();
+		return "/Cadastros/Aula/AulaList?faces-redirect=true";
+	}
+	
+	public void atualizaProva(){
+		for(Chamada ch : listChamada){
+			ch.setProvas(prova);
+		}
+	}
+	
+	public void listaChamadaAlunos(Aula aula){
+		objeto = aula;
+		RequestContext.getCurrentInstance().execute("PF('dlgDetail').show()");
 	}
 	
 	public List<Aula> getAulas() {
@@ -144,6 +160,14 @@ public class AulaCrud {
 
 	public void setListChamada(List<Chamada> listChamada) {
 		this.listChamada = listChamada;
+	}
+
+	public String getProva() {
+		return prova;
+	}
+
+	public void setProva(String prova) {
+		this.prova = prova;
 	}
 	
 	
