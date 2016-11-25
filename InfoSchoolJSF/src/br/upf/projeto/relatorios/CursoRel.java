@@ -22,8 +22,7 @@ public class CursoRel {
 	
 		try {
 			HashMap parameters = new HashMap();
-			
-			
+
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			facesContext.responseComplete();
 			ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();

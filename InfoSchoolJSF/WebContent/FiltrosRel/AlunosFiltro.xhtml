@@ -15,19 +15,18 @@
 			<f:facet name="header">
 				<p:outputLabel value="Filtro de Alunos" />
 			</f:facet>
-			
+
 			<p:outputLabel value="Cidade:  " for="inputCidade" />
 			<p:autoComplete id="inputCidade" style="width:600px" dropdown="true"
 				multiple="false" forceSelection="true" var="obj"
 				itemLabel="#{obj.nome}" itemValue="#{obj}"
-				value="#{alunosRel.cidade}"
-				converter="cidadeConverter"
+				value="#{alunosRel.cidade}" converter="cidadeConverter"
 				completeMethod="#{alunosRel.completeCidade}" />
-				
-			
+
+
 			<f:facet name="footer">
 				<p:commandButton value="Gerar Relatório"
-					action="#{alunosRel.executaRelatorio}" ajax="false" />
+					action="#{alunosRel.executaRelatorio}" ajax="false"/>
 			</f:facet>
 		</p:panelGrid>
 	</h:form>

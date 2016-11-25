@@ -25,9 +25,9 @@
 			<h:form style="font-size: 13px" id="formMenuBar">
 				<p:menubar>
 
-					<p:menuitem value="Home" url="/Sistema/Home/TelaPrincipal.xhtml"
+					<p:menuitem value="Home" url="/Sistema/Home/TelaHome.xhtml"
 						target="centro" />
-
+						
 					<p:submenu label="Relatórios">
 						<p:menuitem value="Alunos" url="/FiltrosRel/AlunosFiltro.xhtml"
 							target="centro">
@@ -36,14 +36,13 @@
 						<p:menuitem value="Alunos das Turmas"
 							url="/FiltrosRel/AlunosTurmaFiltro.xhtml" target="centro">
 						</p:menuitem>
-						
+
 						<p:menuitem value="Turmas dos Alunos"
 							url="/FiltrosRel/TurmaAlunosFiltro.xhtml" target="centro">
 						</p:menuitem>
-						
+
 						<p:menuitem value="Finalizar Turma"
-							url="/FiltrosRel/FinalizarTurmaFiltro.xhtml" target="centro"
-							>
+							url="/FiltrosRel/FinalizarTurmaFiltro.xhtml" target="centro">
 						</p:menuitem>
 
 						<p:menuitem value="Cidades"
@@ -74,7 +73,7 @@
 							rendered="#{session.getAttribute('tipo') eq 'DIRETOR'}">
 						</p:menuitem>
 
-						
+
 					</p:submenu>
 
 					<p:submenu label="Ajuda">
@@ -85,6 +84,7 @@
 					<p:menuitem value="Sair" action="#{loginControle.sair()}" />
 
 				</p:menubar>
+				
 			</h:form>
 
 
@@ -96,9 +96,11 @@
 					</p:toolbarGroup>
 
 				</p:toolbar>
+
+				
 			</h:form>
 		</p:layoutUnit>
-
+		
 		<p:layoutUnit position="west" size="186" header="Menu"
 			resizable="true">
 
@@ -125,6 +127,8 @@
 							url="/Cadastros/Cidade/CidadeList.xhtml" target="centro" />
 					</p:submenu>
 				</p:panelMenu>
+				
+				
 			</h:form>
 
 
@@ -137,7 +141,9 @@
 		</p:layoutUnit>
 
 	</p:layout>
-
+<style>
+    .Bimage{background-image:url("http://noticias.reclameaqui.com.br/uploads/2015/12/1196731690.jpg")}
+</style>
 </h:body>
 </html>
 

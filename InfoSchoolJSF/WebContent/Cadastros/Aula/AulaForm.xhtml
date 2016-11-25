@@ -12,9 +12,9 @@
 	<h:form style="font-size: 13px" id="formEditarChamada">
 		<p:growl autoUpdate="true" />
 		<!-- <p:messages autoUpdate="true" /> -->
-		
+
 		<p:focus for="descricao" />
-		<p:panelGrid columns="2">
+		<p:panelGrid columns="2" style="width: 1020px;">
 			<f:facet name="header">
 				<p:outputLabel value="Edição de Aula" />
 			</f:facet>
@@ -24,15 +24,17 @@
 				pattern="dd-MM-yyyy" mask="true" />
 
 			<p:outputLabel value="Descrição" for="descricao" />
-			<p:inputText id="descricao" size="50" value="#{aulaCrud.objeto.descricao}" />
+			<p:inputTextarea id="descricao" rows="3" cols="140"
+				value="#{aulaCrud.objeto.descricao}" />
 
-			<p:outputLabel value="Prova" for="txtProva" />
-			<p:inputText id="txtProva" size="50" value="#{aulaCrud.prova}" >
-				<p:ajax event="keyup" update="tblChamada" listener="#{aulaCrud.atualizaProva()}"/>
+			<p:outputLabel value="Avaliação" for="txtProva" />
+			<p:inputText id="txtProva" size="20" value="#{aulaCrud.prova}">
+				<p:ajax event="keyup" update="tblChamada"
+					listener="#{aulaCrud.atualizaProva()}" />
 			</p:inputText>
-			
+
 		</p:panelGrid>
-						
+
 		<p:dataTable id="tblChamada" var="c" value="#{aulaCrud.listChamada}">
 			<p:column headerText="Id" style="width:10%;">
 				<div align="center">
@@ -45,11 +47,12 @@
 					<h:outputText value="#{c.aluno.nome}" />
 				</div>
 			</p:column>
-			
-			
-			<p:column headerText="Nota da Prova" id="columnNota" >
+
+
+			<p:column headerText="Avaliação" id="columnNota">
 				<div align="center">
-					<p:inputText id="notaProva" value="#{c.notasProvas}" converterMessage="NÃ£o Ã© uma nota vÃ¡lida" type="number">
+					<p:inputText id="notaProva" value="#{c.notasProvas}"
+						converterMessage="Não é uma nota válida!" type="number">
 						<f:validateDoubleRange minimum="0.0" maximum="10.0" />
 					</p:inputText>
 				</div>
