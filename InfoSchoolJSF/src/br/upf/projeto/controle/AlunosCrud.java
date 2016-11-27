@@ -9,12 +9,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.servlet.http.HttpSession;
 
 import br.upf.casca.ads.beans.classes.Alunos;
-import br.upf.casca.ads.beans.classes.Aula;
 import br.upf.casca.ads.beans.classes.Cidade;
-import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 @ManagedBean
@@ -23,8 +20,10 @@ public class AlunosCrud {
 
 	private Alunos objeto;
 	private List<Alunos> alunos;
+	//listaTipo é usada para setar as opções que podem ser escolhidas para adicionar ao aluno
 	private String[] listaTipo = { "EM ESPERA", "CURSANDO", "CONCLUINTE", "CANCELADO" };
 
+	//metodo utilizado para listar as cidades cadastradas no cadastro de alunos
 	public List<Cidade> completeCidade(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		List<Cidade> results = em.createQuery(
@@ -54,6 +53,7 @@ public class AlunosCrud {
 		List<Alunos> listaCpf = new ArrayList<Alunos>();
 		List<Alunos> listaRg = new ArrayList<Alunos>();
 		
+		//explicação do processo: AdministradorCrud
 		if (objeto.getId() == null) {
 			Query qry = em.createQuery("from Alunos where email = :email");
 			qry.setParameter("email", objeto.getEmail());
@@ -110,6 +110,8 @@ public class AlunosCrud {
 	public String excluir(int id) {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		Alunos aluno = em.find(Alunos.class, id); 
+		//o aluno não é excluido, ele é apenas cancelado, para que possa ainda aparecer nas turmas que 
+		//ja participou, mas não aparecerá mais nas novas turmas.
 		aluno.setTipoAluno("CANCELADO");
 		em.getTransaction().begin();
 		em.merge(aluno);

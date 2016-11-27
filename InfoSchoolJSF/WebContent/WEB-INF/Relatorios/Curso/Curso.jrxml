@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-11-07T21:29:38 -->
+<!-- 2016-11-27T12:08:39 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="73507e69-ac29-499e-835a-5b7eedc36691">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="Y3Vyc28gQVMgLDExNSw2NixiOGU0Y2M5My01YzA0LTRmOWEtYTU2NC05NDliMjM4MWJhNTk7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
@@ -65,38 +65,44 @@ FROM curso]]>
 	<group name="Group1">
 		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
 		<groupHeader>
-			<band height="63">
+			<band height="71">
 				<textField>
-					<reportElement x="60" y="0" width="100" height="30" uuid="7539d62a-aca5-4a1c-b8d1-3da78022722e"/>
+					<reportElement x="60" y="5" width="100" height="30" uuid="7539d62a-aca5-4a1c-b8d1-3da78022722e"/>
 					<textElement>
 						<font size="18" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement mode="Opaque" x="10" y="3" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="2a660766-e104-467c-9e10-f8d24d4e090b"/>
+					<reportElement mode="Opaque" x="10" y="8" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="2a660766-e104-467c-9e10-f8d24d4e090b"/>
 				</rectangle>
 				<staticText>
-					<reportElement x="10" y="40" width="100" height="20" forecolor="#635E5D" uuid="ae6cb59c-23d4-4b77-9d62-fae320a8d1bf"/>
+					<reportElement x="10" y="45" width="100" height="20" forecolor="#635E5D" uuid="ae6cb59c-23d4-4b77-9d62-fae320a8d1bf"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CARGA HORÁRIA]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="130" y="37" width="100" height="23" forecolor="#635E5D" uuid="7ef78d5e-72af-4fc9-b821-45c78c0766cd"/>
+					<reportElement x="130" y="42" width="100" height="23" forecolor="#635E5D" uuid="7ef78d5e-72af-4fc9-b821-45c78c0766cd"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[TURNO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="260" y="38" width="100" height="20" forecolor="#635E5D" uuid="dd5f4238-4a9a-4327-8a98-899c73512458"/>
+					<reportElement x="260" y="43" width="100" height="20" forecolor="#635E5D" uuid="dd5f4238-4a9a-4327-8a98-899c73512458"/>
 					<textElement>
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DIA DA SEMANA]]></text>
 				</staticText>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="2" width="555" height="1" uuid="c5e0b32a-279d-4137-855e-9ecdd265d874"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#999999"/>
+					</graphicElement>
+				</line>
 			</band>
 		</groupHeader>
 	</group>
@@ -122,7 +128,7 @@ FROM curso]]>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="43" splitType="Stretch"/>
+		<band height="35" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="40" splitType="Stretch">
@@ -134,7 +140,7 @@ FROM curso]]>
 				<reportElement x="130" y="0" width="100" height="30" uuid="e2eb37c7-4dfc-4778-b41a-3e7d7d712e4b"/>
 				<textFieldExpression><![CDATA[($F{manha} != false ? "Manhã \n" : "") + 
 ( $F{tarde} != false ? "Tarde \n " : "")  + 
-( $F{noite} != false ? "Noite"  : "" ) ]]></textFieldExpression>
+( $F{noite} != false ? "Noite"  : "" )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="260" y="0" width="100" height="30" uuid="a5e477ca-c625-4721-9847-b1682fc52f49"/>
@@ -143,7 +149,7 @@ FROM curso]]>
 ( $F{quartafeira} != false ? "Quarta-Feira \n " : "")  + 
 ( $F{quintafeira} != false ? "Quinta-Feira \n " : "")  + 
 ( $F{sextafeira} != false ? "Sexta-Feira \n " : "")  + 
-( $F{sabado} != false ? "Sábado"  : "" ) ]]></textFieldExpression>
+( $F{sabado} != false ? "Sábado"  : "" )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

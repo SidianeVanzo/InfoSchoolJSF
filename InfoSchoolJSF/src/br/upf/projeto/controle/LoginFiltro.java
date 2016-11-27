@@ -1,13 +1,13 @@
 package br.upf.projeto.controle;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,13 +41,12 @@ public class LoginFiltro implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession sessao = httpRequest.getSession();
 		String contextPath = httpRequest.getContextPath();
-		/*
+		
 		LoginControle lc = (LoginControle) sessao.getAttribute("loginControle");
 		if ((lc == null) || (lc.getUsuarioLogado() == null)) {
-			System.out.println("Redirecionar para : " + contextPath + "/faces/Login/LoginForm.xhtml");
-			httpResponse.sendRedirect(contextPath + "/faces/Login/LoginForm.xhtml");
+			httpResponse.sendRedirect(contextPath + "/Login/LoginForm.xhtml");
 		}
-		*/ 
+		
 		
 		chain.doFilter(request, response);
 	}

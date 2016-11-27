@@ -10,9 +10,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 import br.upf.casca.ads.beans.classes.Cidade;
-import br.upf.casca.ads.beans.classes.Secretaria;
+import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 @ManagedBean
 @SessionScoped
@@ -20,6 +19,7 @@ public class CidadeCrud {
 
 	private Cidade cidade;
 	private List<Cidade> cidades;
+	//listaUF é usada para setar as opções que podem ser escolhidas para adicionar uma uf na cidade
 	private String[] listaUF = { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA",
 			"PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" };
 
@@ -41,6 +41,7 @@ public class CidadeCrud {
 
 		List<Cidade> listaNome = new ArrayList<Cidade>();
 
+		//explicação do processo: AdministradorCrud
 		if (cidade.getId() == null) {
 			Query qry = em.createQuery("from Cidade where nome = :nome");
 			qry.setParameter("nome", cidade.getNome());

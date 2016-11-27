@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Lançamento de aula</title>
+	<title>InfoSchool - Aulas</title>
 </h:head>
 <h:body>
 	<h:form style="font-size: 13px" id="formEditarChamada">
@@ -16,7 +16,7 @@
 		<p:focus for="descricao" />
 		<p:panelGrid columns="2" style="width: 1020px;">
 			<f:facet name="header">
-				<p:outputLabel value="Edição de Aula" />
+				<p:outputLabel value="Aula" />
 			</f:facet>
 
 			<p:outputLabel value="Data" for="data" />
@@ -29,14 +29,16 @@
 
 			<p:outputLabel value="Avaliação" for="txtProva" />
 			<p:inputText id="txtProva" size="20" value="#{aulaCrud.prova}">
+			<!-- event="keyup": a cada letra digitada o ajax irá modificar a tabela chamada -->
 				<p:ajax event="keyup" update="tblChamada"
 					listener="#{aulaCrud.atualizaProva()}" />
 			</p:inputText>
-
 		</p:panelGrid>
 
 		<p:dataTable id="tblChamada" var="c" value="#{aulaCrud.listChamada}">
-			<p:column headerText="Id" style="width:10%;">
+		<!-- o ID e o Nome do aluno que estao na chamada são chamados através do iniciaChamada, que seta
+		todos os alunos da turma para a chamada também, e aqui os alunos são mostrados. -->
+			<p:column headerText="ID" style="width:10%;">
 				<div align="center">
 					<h:outputText value="#{c.aluno.id}" />
 				</div>
@@ -48,12 +50,11 @@
 				</div>
 			</p:column>
 
-
 			<p:column headerText="Avaliação" id="columnNota">
 				<div align="center">
 					<p:inputText id="notaProva" value="#{c.notasProvas}"
 						converterMessage="Não é uma nota válida!" type="number">
-						<f:validateDoubleRange minimum="0.0" maximum="10.0" />
+						<f:validateDoubleRange minimum="0.00" maximum="10.00" />
 					</p:inputText>
 				</div>
 			</p:column>
@@ -68,10 +69,11 @@
 				<div align="left">
 					<p:commandButton value="Gravar" action="#{aulaCrud.gravar}"
 						ajax="true" />
+					<p:commandButton value="Cancelar" action="#{aulaCrud.cancelar}"
+						ajax="false" immediate="true" />
 				</div>
 			</f:facet>
 		</p:dataTable>
 	</h:form>
-
 </h:body>
 </html>

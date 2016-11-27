@@ -5,11 +5,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
-import br.upf.casca.ads.beans.classes.Aula;
 import br.upf.casca.ads.beans.classes.Chamada;
-import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.classes.Turma;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
@@ -94,5 +91,4 @@ public class ChamadaCrud {
 	public void setChamadas(List<Chamada> chamadas) {
 		this.chamadas = chamadas;
 	}
-
 }

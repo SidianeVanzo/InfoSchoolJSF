@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-10-31T20:25:49 -->
+<!-- 2016-11-07T21:51:49 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Diretor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="68461989-f987-4207-b586-401400612c1e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="ZGlyZXRvciBBUyAsMTA1LDczLDg0MjdhOTI2LTgxODktNDBjOS1iN2E1LWFlYzAzZDE4YjNkMjtw&#xA;ZXNzb2EgQVMgLDMxNCw1MSxhOTY3ZWUyOC03NTM2LTQzYTctOGMzNy1jODI2MzkwNjA2ZTM7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
@@ -51,7 +51,7 @@ FROM diretor
 				</line>
 				<staticText>
 					<reportElement x="2" y="50" width="140" height="17" forecolor="#454141" uuid="3153c2e2-2237-440c-b7d9-23c1c330b36e"/>
-					<textElement>
+					<textElement markup="html">
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[TELEFONE]]></text>

@@ -1,9 +1,7 @@
 package br.upf.projeto.controle;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
@@ -16,8 +14,7 @@ import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 public class CursoCrud {
 
 	private Curso objeto;
-	private List<Curso> cursos;
-    
+	private List<Curso> cursos;    
 	
 	public void inicializarLista(){
 		EntityManager em = ConexaoJPA.getEntityManager();
@@ -28,7 +25,6 @@ public class CursoCrud {
 	public String incluir(){
 		objeto = new Curso();
 		return "CursoForm?faces-redirect=true";
-		
 	}
 	
 	public String gravar(){
@@ -49,16 +45,6 @@ public class CursoCrud {
 		objeto = em.find(Curso.class, id);
 		em.close();
 		return "CursoForm?faces-redirect=true";
-	}
-
-	public String excluir(Integer id) {
-		EntityManager em = ConexaoJPA.getEntityManager();
-		objeto = em.find(Curso.class, id);
-		em.getTransaction().begin();
-		em.remove(objeto);
-		em.getTransaction().commit();
-		em.close();
-		return "CursoList?faces-redirect=true";
 	}
 
 	public CursoCrud() {

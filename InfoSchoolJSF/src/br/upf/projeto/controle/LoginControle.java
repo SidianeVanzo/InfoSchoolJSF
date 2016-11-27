@@ -11,8 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
-import com.sun.faces.action.RequestMapping;
-
 import br.upf.casca.ads.beans.classes.Pessoa;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
@@ -36,7 +34,7 @@ public class LoginControle implements Serializable {
 	}
 
 	/**
-	 * Método responsável por valodar o usuario e senha do usuário. Se for válido
+	 * Método responsável por validar o usuario e senha do usuário. Se for válido
 	 * inicializa o usuário logado com a instancia do usuário respectivo ao
 	 * usuario e senha informados e redireciona para a tela principal da
 	 * aplicação.

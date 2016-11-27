@@ -18,27 +18,32 @@
 				</div>
 				<div align="right"
 					style="position: absolute; top: 12px; width: 95%;">
-					<p:commandButton id="botaoIncluir" value="Incluir"
-						action="#{cidadeCrud.incluir}" ajax="false" 
-						icon="ui-icon-plusthick" 
-						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}"/>
+					<p:commandButton id="botaoIncluir" value="Novo"
+						action="#{cidadeCrud.incluir}" ajax="false"
+						icon="ui-icon-plusthick"
+						rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}" />
 				</div>
 			</f:facet>
 
-			<p:column headerText="Código" sortBy="#{cid.id}" filterBy="#{cid.id}" filterMatchMode="exact">
+			<p:column headerText="Código" sortBy="#{cid.id}" filterBy="#{cid.id}"
+				filterMatchMode="exact">
 				<h:outputText value="#{cid.id}" />
 			</p:column>
-			<p:column headerText="Nome" sortBy="#{cid.nome}" filterBy="#{cid.nome}" filterMatchMode="contains">
+			<p:column headerText="Nome" sortBy="#{cid.nome}"
+				filterBy="#{cid.nome}" filterMatchMode="contains">
 				<h:outputText value="#{cid.nome}" />
 			</p:column>
-			<p:column headerText="UF" sortBy="#{cid.uf}" filterBy="#{cid.uf}" filterMatchMode="contains">
+			<p:column headerText="UF" sortBy="#{cid.uf}" filterBy="#{cid.uf}"
+				filterMatchMode="contains">
 				<h:outputText value="#{cid.uf}" />
 			</p:column>
-			
+
 			<p:column headerText="Editar" width="40"
-			rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
-				<p:commandButton action="#{cidadeCrud.alterar(cid.id)}"
-					ajax="false" icon="ui-icon-pencil" />
+				rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
+				<div align="center">
+					<p:commandButton action="#{cidadeCrud.alterar(cid.id)}"
+						ajax="false" icon="ui-icon-pencil" />
+				</div>
 			</p:column>
 		</p:dataTable>
 	</h:form>

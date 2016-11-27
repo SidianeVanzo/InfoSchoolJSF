@@ -29,7 +29,6 @@ public class TurmaAlunosRel {
 
 		try {
 			HashMap parameters = new HashMap();
-			
 			parameters.put("ALUNOS", alunos.getId());
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			facesContext.responseComplete();
@@ -41,18 +40,16 @@ public class TurmaAlunosRel {
 			HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
 					.getResponse();
 			res.setContentType("application/pdf");
-			res.setHeader("Content-disposition", "inline;filename=arquivo.pdf"); // diretamente
-																					// na
-																					// página
+			res.setHeader("Content-disposition", "inline;filename=arquivo.pdf"); // diretamente na página
 			// res.setHeader("Content-disposition",
 			// "attachment;filename=arquivo.pdf");// baixar ou salvar
+			//um programa que precise escrever um dado em algum local (destino) precisa de um OutputStream ou um Writer.
 			res.getOutputStream().write(b);
 			res.getCharacterEncoding();
 			FacesContext.getCurrentInstance().responseComplete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public List<Alunos> completeAlunos(String query) {
@@ -71,6 +68,4 @@ public class TurmaAlunosRel {
 	public void setAlunos(Alunos alunos) {
 		this.alunos = alunos;
 	}
-
-	
 }

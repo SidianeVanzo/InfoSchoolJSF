@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.upf.casca.ads.beans.classes.Administrador;
-import br.upf.casca.ads.beans.classes.Diretor;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 @ManagedBean
@@ -19,6 +18,7 @@ import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 public class AdministradorCrud {
 
 	private Administrador objeto;
+	//cria-se uma lista do objeto para que seja possível apresentar todos os administradores no AdministradorList
 	private List<Administrador> administradores;
 		
 	public void inicializarLista(){
@@ -37,6 +37,7 @@ public class AdministradorCrud {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		 em.getTransaction().begin();
 
+		 //seta o tipo da pessoa no código para que a pessoa não precise ficar informando em todo cadastro
 		 objeto.setTipo("ADMINISTRADOR");
 		 List<Administrador> listaUsuario = new ArrayList<Administrador>();
 		 List<Administrador> listaEmail = new ArrayList<Administrador>();
@@ -50,7 +51,11 @@ public class AdministradorCrud {
 				query.setParameter("email", objeto.getEmail());
 				listaEmail = query.getResultList();
 			}
-
+			//realiza uma busca para verificar se os campos usuário e email informados já estão cadastrados
+			//no sistema. Se sim, uma mensagem é informada avisando o usuário de que não é possível cadastrar
+			//pois já existe esta mesma informação no banco. Para validar isso, é necessário verificar se
+			//a lista de usuários e e-mails está vazia. Se sim, quer dizer que não tem usuários e email
+			//iguais cadastrados no banco
 			if (listaUsuario.isEmpty()) {
 				if(listaEmail.isEmpty()){
 						em.merge(objeto);

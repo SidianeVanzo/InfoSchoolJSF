@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Secretaria;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
@@ -40,7 +39,7 @@ public class SecretariaCrud {
 		 
 		 List<Secretaria> listaUsuario = new ArrayList<Secretaria>();
 		 List<Secretaria> listaEmail = new ArrayList<Secretaria>();
-			
+		//explicação do processo: AdministradorCrud	
 			if (objeto.getId() == null) {
 				Query qry = em.createQuery("from Pessoa where usuario = :usuario");
 				qry.setParameter("usuario", objeto.getUsuario());

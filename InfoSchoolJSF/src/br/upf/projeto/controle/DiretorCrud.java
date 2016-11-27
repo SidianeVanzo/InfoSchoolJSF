@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.upf.casca.ads.beans.classes.Diretor;
-import br.upf.casca.ads.beans.classes.Professor;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
 @ManagedBean
@@ -30,7 +29,6 @@ public class DiretorCrud {
 	public String incluir(){
 		objeto = new Diretor();
 		return "DiretorForm?faces-redirect=true";
-		
 	}
 	
 	public String gravar(){
@@ -41,6 +39,7 @@ public class DiretorCrud {
 		 List<Diretor> listaUsuario = new ArrayList<Diretor>();
 		 List<Diretor> listaEmail = new ArrayList<Diretor>();
 			
+		//explicação do processo: AdministradorCrud
 			if (objeto.getId() == null) {
 				Query qry = em.createQuery("from Pessoa where usuario = :usuario");
 				qry.setParameter("usuario", objeto.getUsuario());

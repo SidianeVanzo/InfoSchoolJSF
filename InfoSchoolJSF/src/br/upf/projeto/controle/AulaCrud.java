@@ -3,16 +3,18 @@ package br.upf.projeto.controle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
+
+import org.primefaces.context.RequestContext;
+
 import br.upf.casca.ads.beans.classes.AlunosTurma;
 import br.upf.casca.ads.beans.classes.Aula;
 import br.upf.casca.ads.beans.classes.Chamada;
 import br.upf.casca.ads.beans.classes.Turma;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
-import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
@@ -67,7 +69,7 @@ public class AulaCrud {
 	}
 
 	public String cancelar() {
-		return "AulaList";
+		return "/Cadastros/Turma/TurmaList?faces-redirect=true";
 	}
 
 	public String alterar(Integer id) {
@@ -99,17 +101,30 @@ public class AulaCrud {
 	private void iniciaChamada(){
 		listChamada = new ArrayList();
 		if(turma != null){
+			//cada aluno tem a sua chamada de cada aula feita
+			//pega um array de alunos que tem na turma e cria um array de chamadas, inserindo um novo
+			//aluno em cada nova chamada que é criada.
 			List<AlunosTurma> listAlunos = turma.getAlunosTurma();
 			for(AlunosTurma aluno : turma.getAlunosTurma()){
 				Chamada chamada = new Chamada();
 				chamada.setAluno(aluno.getAlunos());
-				chamada.setComparecimentoAula(false);
-				chamada.setNotasProvas(0.00);				
+				chamada.setComparecimentoAula(false);				
 				listChamada.add(chamada);
 			}
 		}
 	}
 	
+	//Este método percorre a  lista de chamada e seta o valor do campo prova para todos os objetos 
+	//prova das chamadas, ou seja, a descrição da prova vai ficar igual em todas, mesmo eu adicionando
+	//apenas em um só lugar.
+	public void atualizaProva(){
+		for(Chamada ch : listChamada){
+			ch.setProvas(prova);
+		}
+	}
+	
+	//busca no banco as aulas da turma, diferenciando as turmas através do id que é passado aqui
+	//e informado no TurmaList ao Ver Aula
 	public String listaAulasTurma(int idTurma){
 		EntityManager em = ConexaoJPA.getEntityManager();
 		aulas = em.createQuery("from Aula WHERE turma_id = "+idTurma).getResultList();
@@ -117,12 +132,8 @@ public class AulaCrud {
 		return "/Cadastros/Aula/AulaList?faces-redirect=true";
 	}
 	
-	public void atualizaProva(){
-		for(Chamada ch : listChamada){
-			ch.setProvas(prova);
-		}
-	}
-	
+	//lista detalhadamente cada aula já realizada. Aula é informada corretamente pois é passada a aula
+	//aqui e informada no Aula List ao Ver Mais
 	public void listaChamadaAlunos(Aula aula){
 		objeto = aula;
 		RequestContext.getCurrentInstance().execute("PF('dlgDetail').show()");
@@ -144,11 +155,9 @@ public class AulaCrud {
 		this.objeto = objeto;
 	}
 
-
 	public Turma getTurma() {
 		return turma;
 	}
-
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
@@ -169,6 +178,4 @@ public class AulaCrud {
 	public void setProva(String prova) {
 		this.prova = prova;
 	}
-	
-	
 }

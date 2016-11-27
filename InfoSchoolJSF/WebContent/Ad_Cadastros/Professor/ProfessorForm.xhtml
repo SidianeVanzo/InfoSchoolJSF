@@ -14,7 +14,7 @@
 		<p:focus for="nome" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Edição de Professor" />
+				<p:outputLabel value="Professor" />
 			</f:facet>
 
 			<p:outputLabel for="nome" value="Nome" />
@@ -37,10 +37,11 @@
 				value="#{professorCrud.objeto.usuario}" />
 
 			<p:outputLabel value="Senha: " for="senha" />
-			<p:password id="senha" value="#{professorCrud.objeto.senha}" size="50" />
- 
+			<p:password id="senha" value="#{professorCrud.objeto.senha}"
+				size="50" />
 
-						<p:outputLabel value="Turno Disponível: " />
+
+			<p:outputLabel value="Turno Disponível: " />
 			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
 
 				<p:selectBooleanCheckbox value="#{professorCrud.objeto.manha}" />
@@ -57,7 +58,8 @@
 			<p:outputLabel value="Dia da Semana" />
 			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
 
-				<p:selectBooleanCheckbox value="#{professorCrud.objeto.segundaFeira}" />
+				<p:selectBooleanCheckbox
+					value="#{professorCrud.objeto.segundaFeira}" />
 				<h:outputText value="Segunda-Feira " />
 
 				<p:selectBooleanCheckbox value="#{professorCrud.objeto.tercaFeira}" />
@@ -84,7 +86,7 @@
 				<f:facet name="header">
 					<div align="left"
 						style="position: relative; height: 10px; top: 5px; width: 95%;">
-						<p:outputLabel value="Listagem de Cursos Habilitados"></p:outputLabel>
+						<p:outputLabel value="Cursos Habilitados"></p:outputLabel>
 					</div>
 					<div align="right"
 						style="position: relative; height: 10px; top: -12px; width: 95%;">
@@ -138,7 +140,7 @@
 				oncomplete="if (!args.validationFailed){ PF('dialogoItens').hide();}"
 				ajax="true">
 			</p:commandButton>
-			<p:commandButton actionListener="#{recebimentoCrud.cancelarItem}"
+			<p:commandButton actionListener="#{professorCrud.cancelarItem}"
 				value="Cancelar" update=":formEditar:tabelaCursosHabilitados"
 				immediate="true" oncomplete="PF('dialogoItens').hide();" ajax="true" />
 		</h:form>

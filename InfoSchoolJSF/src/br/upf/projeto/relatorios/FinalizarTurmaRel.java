@@ -28,7 +28,6 @@ public class FinalizarTurmaRel {
 
 		try {
 			HashMap parameters = new HashMap();
-			
 			parameters.put("TURMA", turma.getId());
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			facesContext.responseComplete();
@@ -40,9 +39,7 @@ public class FinalizarTurmaRel {
 			HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
 					.getResponse();
 			res.setContentType("application/pdf");
-			res.setHeader("Content-disposition", "inline;filename=arquivo.pdf"); // diretamente
-																					// na
-																					// página
+			res.setHeader("Content-disposition", "inline;filename=arquivo.pdf"); // diretamente na página
 			// res.setHeader("Content-disposition",
 			// "attachment;filename=arquivo.pdf");// baixar ou salvar
 			res.getOutputStream().write(b);
@@ -51,7 +48,6 @@ public class FinalizarTurmaRel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public List<Turma> completeTurma(String query) {
@@ -70,5 +66,4 @@ public class FinalizarTurmaRel {
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
-
 }

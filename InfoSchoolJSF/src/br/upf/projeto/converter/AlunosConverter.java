@@ -23,7 +23,7 @@ public class AlunosConverter implements Converter{
 				return ret;
 			} catch (NumberFormatException e) {
 				throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-						"Erro de Conversão da Alunos", "Alunos inválida."));
+						"Erro de Conversão de Alunos", "Alunos inválidos."));
 			}
 		} else
 			return null;

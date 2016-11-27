@@ -21,9 +21,7 @@ public class SecretariaRel {
 	public void executaRelatorio(){
 	
 		try {
-			HashMap parameters = new HashMap();
-			
-			
+			HashMap parameters = new HashMap();			
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			facesContext.responseComplete();
 			ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();
@@ -41,7 +39,5 @@ public class SecretariaRel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
-		
 	}
 }
