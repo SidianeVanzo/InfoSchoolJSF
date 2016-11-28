@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>InfoSchool</title>
+	<title>InfoSchool - Cursos</title>
 </h:head>
 <h:body onload="#{cursoCrud.inicializarLista()}">
 	<h:form style="font-size: 13px" id="formLista">
@@ -16,11 +16,11 @@
 			currentPageReportTemplate="Listando de {startRecord} até {endRecord} de {totalRecords}.">>
 			<f:facet name="header">
 				<p:spacer height="30"></p:spacer>
-				<div align="left" style="position: absolute; top: 20px; width: 95%;">
-					<p:outputLabel value="Listagem de Curso"></p:outputLabel>
+				<div style="position: absolute; top: 20px; width: 95%;">
+					<p:outputLabel value="Cursos"></p:outputLabel>
 				</div>
 				<div align="right"
-					style="position: absolute; top: 12px; width: 95%;">
+					style="position: absolute; top: 17px; width: 95%;">
 					<p:commandButton id="botaoIncluir" value="Novo"
 						action="#{cursoCrud.incluir}" ajax="false"
 						icon="ui-icon-plusthick"
@@ -28,16 +28,10 @@
 				</div>
 			</f:facet>
 
-			<p:column headerText="Código" sortBy="#{curso.id}"
-				filterBy="#{curso.id}" filterMatchMode="exact">
-				<h:outputText value="#{curso.id}" />
-			</p:column>
 			<p:column headerText="Nome" sortBy="#{curso.nome}"
 				filterBy="#{curso.nome}" filterMatchMode="contains">
 				<h:outputText value="#{curso.nome}" />
 			</p:column>
-
-
 
 			<p:column headerText="Carga Horária" sortBy="#{curso.cargaHoraria}"
 				filterBy="#{curso.cargaHoraria}" filterMatchMode="contains">

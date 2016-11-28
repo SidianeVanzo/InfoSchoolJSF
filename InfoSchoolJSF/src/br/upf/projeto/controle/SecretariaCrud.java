@@ -22,7 +22,7 @@ public class SecretariaCrud {
 		
 	public void inicializarLista(){
 		EntityManager em = ConexaoJPA.getEntityManager();
-		secretarias = em.createQuery("from Secretaria").getResultList();
+		secretarias = em.createQuery("from Secretaria order by nome DESC").getResultList();
 		em.close();
 	}
 	

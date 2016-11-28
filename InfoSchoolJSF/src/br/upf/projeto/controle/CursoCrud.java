@@ -18,7 +18,7 @@ public class CursoCrud {
 	
 	public void inicializarLista(){
 		EntityManager em = ConexaoJPA.getEntityManager();
-		cursos = em.createQuery("from Curso").getResultList();
+		cursos = em.createQuery("from Curso order by nome DESC").getResultList();
 		em.close();
 	}
 	

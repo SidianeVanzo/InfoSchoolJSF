@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>InfoSchool</title>
+	<title>InfoSchool - Cursos</title>
 </h:head>
 <h:body>
 	<h:form style="font-size: 13px" id="formEditar">
@@ -14,13 +14,13 @@
 		<p:focus for="nome" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Edição de Curso" />
+				<p:outputLabel value="Curso" />
 			</f:facet>
 
-			<p:outputLabel value="Nome:" for="nome" />
+			<p:outputLabel value="Nome" for="nome" />
 			<p:inputText id="nome" size="50" value="#{cursoCrud.objeto.nome}" />
 
-			<p:outputLabel value="Turno Disponível: " />
+			<p:outputLabel value="Turno Disponível" />
 			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
 
 				<p:selectBooleanCheckbox value="#{cursoCrud.objeto.manha}" />
@@ -57,7 +57,7 @@
 			</h:panelGrid>
 
 
-			<p:outputLabel value="Carga Horária:  " for="cargaHoraria" />
+			<p:outputLabel value="Carga Horária" for="cargaHoraria" />
 			<p:inputText id="cargaHoraria" size="50"
 				value="#{cursoCrud.objeto.cargaHoraria}" />
 

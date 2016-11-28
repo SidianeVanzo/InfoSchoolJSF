@@ -57,7 +57,7 @@ public class TurmaCrud {
 		} else {
 			EntityManager em = ConexaoJPA.getEntityManager();
 			List<Alunos> results = em.createQuery("from Alunos where upper(nome) like " + "'"
-					+ query.trim().toUpperCase() + "%' AND tipoaluno <> 'CANCELADO' " + listaID() + "order by nome").getResultList();
+					+ query.trim().toUpperCase() + "%'" + "AND tipoaluno <> 'CANCELADO' " + listaID() + "order by nome").getResultList();
 			em.close();
 			return results;
 		}
@@ -65,7 +65,7 @@ public class TurmaCrud {
 
 	public void inicializarLista() {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		turmas = em.createQuery("from Turma").getResultList();
+		turmas = em.createQuery("from Turma order by nome ASC").getResultList();
 		em.close();
 	}
 
@@ -190,8 +190,7 @@ public class TurmaCrud {
 	}
 
 	public void excluirItem(Integer rowIndex) {
-		objeto.getAlunosTurma().remove(rowIndex.intValue()); // exclui itens da
-																// coleção
+		objeto.getAlunosTurma().remove(rowIndex.intValue()); // exclui itens da coleção
 	}
 
 	public void gravarItem() {

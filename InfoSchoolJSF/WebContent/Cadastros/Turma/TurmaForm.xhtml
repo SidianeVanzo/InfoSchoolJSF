@@ -6,19 +6,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>InfoSchool</title>
+	<title>InfoSchool - Turmas</title>
 </h:head>
 <h:body>
-
 	<h:form style="font-size: 13px" id="formEditar">
 		<p:growl></p:growl>
 		<p:focus for="nome" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Nova Turma" />
+				<p:outputLabel value="Turma" />
 			</f:facet>
-			<p:outputLabel value="Nome:" for="nome" />
-			<p:inputText id="nome" size="50" value="#{turmaCrud.objeto.nome}"/>
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" size="50" value="#{turmaCrud.objeto.nome}" />
 
 			<p:outputLabel value="Dia da Semana" />
 			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
@@ -42,7 +41,7 @@
 				<h:outputText value="Sábado " />
 			</h:panelGrid>
 
-			<p:outputLabel value="Turno Disponível: " />
+			<p:outputLabel value="Turno" />
 			<h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
 
 				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.manha}" />
@@ -53,50 +52,48 @@
 
 				<p:selectBooleanCheckbox value="#{turmaCrud.objeto.noite}" />
 				<h:outputText value="Noite" />
-
 			</h:panelGrid>
 
-			<p:outputLabel value="Horário de Início: " for="horarioInicio" />
-			<p:calendar id="horarioInicio"
-				value="#{turmaCrud.objeto.horarioInicio}" pattern="HH:mm"
-				timeOnly="true" />
-
-			<p:outputLabel value="Horário de Fim: " for="horarioFim" />
-			<p:calendar id="horarioFim" value="#{turmaCrud.objeto.horarioFim}"
-				pattern="HH:mm" timeOnly="true" />
-
-			<p:outputLabel value="Curso:  " for="inputCurso" />
+			<p:outputLabel value="Curso" for="inputCurso" rendered="#{turmaCrud.objeto.id eq null}"/>
 			<p:autoComplete id="inputCurso" style="width:600px" dropdown="true"
 				multiple="false" forceSelection="true" var="obj"
 				itemLabel="#{obj.nome}" itemValue="#{obj}"
 				value="#{turmaCrud.objeto.curso}" converter="cursoConverter"
-				completeMethod="#{turmaCrud.completeCurso}" />
+				completeMethod="#{turmaCrud.completeCurso}" rendered="#{turmaCrud.objeto.id eq null}"/>
 
-			<p:outputLabel value="Tipo Turma:" for="tipoTurma" />
-			<p:selectOneMenu id="tipoTurma" value="#{turmaCrud.objeto.tipoTurma}">
-				<f:selectItems value="#{turmaCrud.listaTipo}" />
-			</p:selectOneMenu>
-
-			<p:outputLabel value="Professor:  " for="inputProfessor" />
+			<p:outputLabel value="Professor" for="inputProfessor" />
 			<p:autoComplete id="inputProfessor" style="width:600px"
 				dropdown="true" multiple="false" forceSelection="true" var="obj"
 				itemLabel="#{obj.nome}" itemValue="#{obj}"
 				value="#{turmaCrud.objeto.professor}" converter="professorConverter"
 				completeMethod="#{turmaCrud.completeProfessor}" />
 
+			<p:outputLabel value="Horário de Início" for="horarioInicio" />
+			<p:calendar id="horarioInicio"
+				value="#{turmaCrud.objeto.horarioInicio}" pattern="HH:mm"
+				timeOnly="true" />
+
+			<p:outputLabel value="Horário de Fim" for="horarioFim" />
+			<p:calendar id="horarioFim" value="#{turmaCrud.objeto.horarioFim}"
+				pattern="HH:mm" timeOnly="true" />
+
+			<p:outputLabel value="Tipo Turma" for="tipoTurma" rendered="#{turmaCrud.objeto.id eq null}"/>
+			<p:selectOneMenu id="tipoTurma" value="#{turmaCrud.objeto.tipoTurma}" rendered="#{turmaCrud.objeto.id eq null}">
+				<f:selectItems value="#{turmaCrud.listaTipo}" />
+			</p:selectOneMenu>
+
 			<p:outputLabel value="Alunos" />
-
-
 			<p:dataTable id="tabelaAlunos" rowIndexVar="rowIndex" var="obj"
 				value="#{turmaCrud.objeto.alunosTurma}"
 				emptyMessage="Nenhum resultado encontrado">
 				<f:facet name="header">
 					<div align="left"
 						style="position: relative; height: 10px; top: 5px; width: 95%;">
-						<p:outputLabel value="Listagem de Alunos para a Turma"></p:outputLabel>
+						<p:outputLabel value="Alunos para a Turma"></p:outputLabel>
 					</div>
 					<div align="right"
 						style="position: relative; height: 10px; top: -12px; width: 95%;">
+						
 						<p:commandButton id="botaoIncluir" value="Incluir" ajax="true"
 							actionListener="#{turmaCrud.incluirItem}" update=":formAlunos"
 							onclick="PF('dialogoAlunos').show();"
@@ -112,22 +109,22 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="" width="60"
-					rendered="#{turmaCrud.objeto.id eq null}">
+				<p:column headerText="Editar" width="60">
 					<p:commandButton
 						actionListener="#{turmaCrud.alterarItem(rowIndex)}"
-						value="Alterar" ajax="true" update=":formAlunos"
+						icon="ui-icon-pencil" ajax="true" update=":formAlunos"
 						onclick="PF('dialogoAlunos').show();" />
 				</p:column>
-				<p:column headerText="" width="60">
+				
+				<p:column headerText="Excluir" width="60"
+					rendered="#{turmaCrud.objeto.id eq null}">
 					<p:commandButton
 						actionListener="#{turmaCrud.excluirItem(rowIndex)}"
-						value="Excluir" ajax="true" update=":formEditar:tabelaAlunos"
+						icon="ui-icon-trash" ajax="true" update=":formEditar:tabelaAlunos"
 						onclick="if (!confirm('Confirma a exclusão?')) return false">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-
 
 			<f:facet name="footer">
 				<p:commandButton value="Gravar" action="#{turmaCrud.gravar}"
@@ -138,9 +135,6 @@
 		</p:panelGrid>
 	</h:form>
 
-
-
-
 	<p:dialog header="Editar Alunos" widgetVar="dialogoAlunos" width="500"
 		resizable="false" modal="true">
 		<h:form id="formAlunos">
@@ -149,12 +143,14 @@
 			<h:panelGrid columns="2" style="margin-bottom:10px">
 				<p:commandLink value="Alunos"
 					onclick="parent.abrePopUp('/InfoSchoolJSF/faces/Cadastros/Alunos/AlunosList.xhtml',
-					'Cadastro de Alunos', 600, 800, true)" />
+					'Cadastro de Alunos', 600, 800, true)"
+					rendered="#{turmaCrud.objeto.id eq null}" />
 				<p:autoComplete id="alunos" size="25" dropdown="true"
 					multiple="false" forceSelection="true" var="obj"
 					itemLabel="#{obj.nome}" itemValue="#{obj}"
 					value="#{turmaCrud.alunosTurma.alunos}" converter="alunosConverter"
-					completeMethod="#{turmaCrud.completeAlunos}" />
+					completeMethod="#{turmaCrud.completeAlunos}"
+					rendered="#{turmaCrud.objeto.id eq null}" />
 
 				<p:outputLabel value="Data de Inserção:"
 					for="dataInsercaoAlunosTurma" />
@@ -174,7 +170,6 @@
 				oncomplete="PF('dialogoAlunos').hide();" ajax="true" />
 		</h:form>
 	</p:dialog>
-
 
 </h:body>
 </html>

@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.upf.casca.ads.beans.classes.Alunos;
 import br.upf.casca.ads.beans.classes.Cidade;
 import br.upf.casca.ads.beans.uteis.ConexaoJPA;
 
@@ -25,7 +26,7 @@ public class CidadeCrud {
 
 	public void inicializarLista() {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		cidades = em.createQuery("from Cidade").getResultList();
+		cidades = em.createQuery("from Cidade order by nome ASC").getResultList();
 		em.close();
 	}
 
@@ -40,6 +41,7 @@ public class CidadeCrud {
 		em.getTransaction().begin();
 
 		List<Cidade> listaNome = new ArrayList<Cidade>();
+		
 
 		//explicação do processo: AdministradorCrud
 		if (cidade.getId() == null) {
@@ -55,7 +57,7 @@ public class CidadeCrud {
 			return "CidadeList?faces-redirect=true";
 		} else {
 			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"A cidade informada já está cadastrada no sistema. Por favor, informe outra cidade!!", "");
+					"A cidade informada já está cadastrada no sistema. Por favor, informe outra cidade!", "");
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 			return "";
 		}

@@ -6,17 +6,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>InfoSchool</title>
+	<title>InfoSchool - Home</title>
 </h:head>
 <h:body>
 	<p:growl></p:growl>
 
-	<h:form id="formLista">
-	<!-- setar um valor de padding para a div, para que o texto fique centralizado na tela -->
+	<h:form id="formLista" >	
 		<div align="center"
-			style="padding: 17%; background-image: url('http://4.bp.blogspot.com/-vxWMBjUjE6c/VLAQyoleS5I/AAAAAAAAC_4/K8H4r2GgvJk/s1600/tma-chalkboard.jpg');">
+			style="padding: 17%;">
 
-			<h:outputText style="color:#f0f0f0; font-size:30px;"
+			<h:outputText style="font-size:30px;"
 				value="Bem Vindo ao InfoSchool"></h:outputText>
 
 			<p:steps activeIndex="4" styleClass="custom" readonly="false">
@@ -28,17 +27,17 @@
 					url="/FiltrosRel/AlunosTurmaFiltro.xhtml" target="centro" />
 				<p:menuitem value="Relatórios de Alunos"
 					url="/FiltrosRel/AlunosFiltro.xhtml" target="centro" />
-
 			</p:steps>
 		</div>
 
-<!-- Para deixar os tamanhos dos steps iguais, foi criado esse <style>, setando um valor de  largura para elas-->
 		<style type="text/css">
 .ui-steps .ui-steps-item {
 	width: 45%;
 }
+html{
+overflow-y:hidden;
+}
 </style>
-
 	</h:form>
 </h:body>
 </html>

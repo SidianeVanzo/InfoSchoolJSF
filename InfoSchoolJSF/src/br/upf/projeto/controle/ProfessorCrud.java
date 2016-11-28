@@ -23,7 +23,7 @@ public class ProfessorCrud {
 	public List<Curso> completeCurso(String query) {
 		EntityManager em = ConexaoJPA.getEntityManager();
 		List<Curso> results = em.createQuery("from Curso where upper(nome) like " + "'" + query.trim().toUpperCase()
-				+ "%' " + listaID() + "order by nome").getResultList();
+				+ "%' " + listaID() + "order by nome DESC").getResultList();
 		em.close();
 		return results;
 	}
@@ -152,6 +152,7 @@ public class ProfessorCrud {
 		this.professores = professores;
 	}
 
+	
 	private Curso cursos; // cursos em edição, vinculado ao formulário
 	private Integer rowIndex = null; // índice do cursos selecionado - alterar e
 										// excluir

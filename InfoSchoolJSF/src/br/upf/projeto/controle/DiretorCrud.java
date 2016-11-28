@@ -22,7 +22,7 @@ public class DiretorCrud {
 		
 	public void inicializarLista(){
 		EntityManager em = ConexaoJPA.getEntityManager();
-		diretores = em.createQuery("from Diretor").getResultList();
+		diretores = em.createQuery("from Diretor order by nome DESC").getResultList();
 		em.close();
 	}
 	

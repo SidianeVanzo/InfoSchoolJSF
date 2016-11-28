@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>InfoSchool</title>
+	<title>InfoSchool - Cidades</title>
 </h:head>
 <h:body>
 
@@ -15,10 +15,10 @@
 		<p:focus for="nome" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
-				<p:outputLabel value="Edição de Cidade" />
+				<p:outputLabel value="Cidade" />
 			</f:facet>
 				
-			<p:outputLabel value="Nome:" for="nome" />
+			<p:outputLabel value="Nome" for="nome" />
 			<p:inputText id="nome" size="50" value="#{cidadeCrud.cidade.nome}" />
 			
 			<p:outputLabel value="Estado" for="uf" />
@@ -34,6 +34,5 @@
 			</f:facet>
 		</p:panelGrid>
 	</h:form>
-
 </h:body>
 </html>

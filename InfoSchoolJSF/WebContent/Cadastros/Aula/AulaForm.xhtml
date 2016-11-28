@@ -11,8 +11,7 @@
 <h:body>
 	<h:form style="font-size: 13px" id="formEditarChamada">
 		<p:growl autoUpdate="true" />
-		<!-- <p:messages autoUpdate="true" /> -->
-
+		
 		<p:focus for="descricao" />
 		<p:panelGrid columns="2" style="width: 1020px;">
 			<f:facet name="header">
@@ -29,15 +28,13 @@
 
 			<p:outputLabel value="Avaliação" for="txtProva" />
 			<p:inputText id="txtProva" size="20" value="#{aulaCrud.prova}">
-			<!-- event="keyup": a cada letra digitada o ajax irá modificar a tabela chamada -->
+			
 				<p:ajax event="keyup" update="tblChamada"
 					listener="#{aulaCrud.atualizaProva()}" />
 			</p:inputText>
 		</p:panelGrid>
 
 		<p:dataTable id="tblChamada" var="c" value="#{aulaCrud.listChamada}">
-		<!-- o ID e o Nome do aluno que estao na chamada são chamados através do iniciaChamada, que seta
-		todos os alunos da turma para a chamada também, e aqui os alunos são mostrados. -->
 			<p:column headerText="ID" style="width:10%;">
 				<div align="center">
 					<h:outputText value="#{c.aluno.id}" />

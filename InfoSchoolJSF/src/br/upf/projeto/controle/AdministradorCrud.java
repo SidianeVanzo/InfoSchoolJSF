@@ -23,7 +23,7 @@ public class AdministradorCrud {
 		
 	public void inicializarLista(){
 		EntityManager em = ConexaoJPA.getEntityManager();
-		administradores = em.createQuery("from Administrador").getResultList();
+		administradores = em.createQuery("from Administrador  order by nome DESC").getResultList();
 		em.close();
 	}
 	

@@ -35,7 +35,7 @@ public class AlunosCrud {
 
 	public void inicializarLista() {
 		EntityManager em = ConexaoJPA.getEntityManager();
-		alunos = em.createQuery("from Alunos").getResultList();
+		alunos = em.createQuery("from Alunos order by nome ASC").getResultList();
 		em.close();
 	}
 
