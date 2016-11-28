@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-11-27T12:08:39 -->
+<!-- 2016-11-28T15:47:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FinalizarTurma1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db1149aa-a6a1-492a-a322-8a3228968ba8">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
@@ -41,7 +41,7 @@ FROM chamada
 	<field name="comparecimento" class="java.lang.Boolean"/>
 	<field name="notasprovas" class="java.lang.Double"/>
 	<field name="curso" class="java.lang.String"/>
-	<field name="cargahoraria" class="java.lang.String"/>
+	<field name="cargahoraria" class="java.lang.Double"/>
 	<field name="pessoaprofessor" class="java.lang.String"/>
 	<field name="horariofim" class="java.sql.Time"/>
 	<field name="horarioinicio" class="java.sql.Time"/>
@@ -63,7 +63,7 @@ FROM chamada
 					<reportElement mode="Opaque" x="10" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="e343d40a-3e1c-428a-9d1e-fdd33c699ae3"/>
 				</rectangle>
 				<textField>
-					<reportElement x="60" y="10" width="100" height="30" uuid="3bc5012a-d9f5-421e-abd7-8372f3a79230"/>
+					<reportElement x="60" y="10" width="490" height="30" uuid="3bc5012a-d9f5-421e-abd7-8372f3a79230"/>
 					<textElement>
 						<font size="18" isBold="true"/>
 					</textElement>
@@ -105,12 +105,13 @@ FROM chamada
 					<textElement>
 						<font size="16"/>
 					</textElement>
-					<textFieldExpression><![CDATA[(($V{comparecimento1} * ($F{horariofim}.getHours() - $F{horarioinicio}.getHours())) / Double.parseDouble($F{cargahoraria})) * 100 + "%"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[(($V{comparecimento1} * ($F{horariofim}.getHours() - $F{horarioinicio}.getHours())) / $F{cargahoraria}) * 100 + "%"]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="">
 					<reportElement x="230" y="0" width="120" height="30" uuid="aaa51280-c8f3-4c22-a386-17a73d21a98d"/>
 					<textElement>
 						<font size="16"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{notasprovas1} / $V{notasprovas2}]]></textFieldExpression>
 				</textField>
@@ -119,8 +120,8 @@ FROM chamada
 					<textElement>
 						<font size="16"/>
 					</textElement>
-					<textFieldExpression><![CDATA[((($V{comparecimento1} * ($F{horariofim}.getHours() - $F{horarioinicio}.getHours())) / Double.parseDouble($F{cargahoraria})) * 100) >25.0 || $V{notasprovas1} / $V{notasprovas2} <5.0 ? "Reprovado" : 
-(((($V{comparecimento1} * ($F{horariofim}.getHours() - $F{horarioinicio}.getHours())) / Double.parseDouble($F{cargahoraria})) * 100) >25.0 || $V{notasprovas1} / $V{notasprovas2} <7.0 ? "Recuperação" : "Aprovado")]]></textFieldExpression>
+					<textFieldExpression><![CDATA[((($V{comparecimento1} * ($F{horariofim}.getHours() - $F{horarioinicio}.getHours())) / $F{cargahoraria}) * 100) >25.0 || $V{notasprovas1} / $V{notasprovas2} <5.0 ? "Reprovado" : 
+(((($V{comparecimento1} * ($F{horariofim}.getHours() - $F{horarioinicio}.getHours())) / $F{cargahoraria}) * 100) >25.0 || $V{notasprovas1} / $V{notasprovas2} <7.0 ? "Recuperação" : "Aprovado")]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>

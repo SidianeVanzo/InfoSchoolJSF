@@ -28,7 +28,6 @@
 
 			<p:outputLabel value="Avaliação" for="txtProva" />
 			<p:inputText id="txtProva" size="20" value="#{aulaCrud.prova}">
-			
 				<p:ajax event="keyup" update="tblChamada"
 					listener="#{aulaCrud.atualizaProva()}" />
 			</p:inputText>
@@ -51,7 +50,7 @@
 				<div align="center">
 					<p:inputText id="notaProva" value="#{c.notasProvas}"
 						converterMessage="Não é uma nota válida!" type="number">
-						<f:validateDoubleRange minimum="0.00" maximum="10.00" />
+						<f:validateDoubleRange minimum="0.0" maximum="10.0" />
 					</p:inputText>
 				</div>
 			</p:column>

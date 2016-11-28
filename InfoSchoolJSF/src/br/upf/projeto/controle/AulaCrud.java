@@ -60,11 +60,14 @@ public class AulaCrud {
 		
 		objeto.setChamada(listChamada);
 		objeto.setTurma(turma);
+		
 			
 		em.getTransaction().begin();
 		em.merge(objeto);
 		em.getTransaction().commit();
+		
 		em.close();
+		setProva("");
 		return "/Cadastros/Turma/TurmaList?faces-redirect=true";
 	}
 

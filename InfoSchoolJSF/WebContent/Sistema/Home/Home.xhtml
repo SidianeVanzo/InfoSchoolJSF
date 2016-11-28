@@ -18,18 +18,12 @@
 }
 </style>
 
-	<style>
-.Bimage {
-	background-image:
-		url("http://noticias.reclameaqui.com.br/uploads/2015/12/1196731690.jpg")
-}
-</style>
 
 	<title>InfoSchool - Home</title>
 </h:head>
 <h:body styleClass="Bimage">
 	<p:layout fullPage="true">
-		<p:layoutUnit position="north" size="90" resizable="false">
+		<p:layoutUnit position="north" size="80" resizable="false">
 
 			<h:form style="font-size: 13px" id="formMenuBar">
 				<p:menubar>
@@ -39,13 +33,13 @@
 						<p:menuitem value="Alunos" url="/FiltrosRel/AlunosFiltro.xhtml"
 							target="centro">
 						</p:menuitem>
-						<p:menuitem value="Alunos das Turmas"
+						<p:menuitem value="Alunos da Turma"
 							url="/FiltrosRel/AlunosTurmaFiltro.xhtml" target="centro">
 						</p:menuitem>
-						<p:menuitem value="Turmas dos Alunos"
+						<p:menuitem value="Turmas do Aluno"
 							url="/FiltrosRel/TurmaAlunosFiltro.xhtml" target="centro">
 						</p:menuitem>
-						<p:menuitem value="Finalizar Turma"
+						<p:menuitem value="Situação dos Alunos na Turma"
 							url="/FiltrosRel/FinalizarTurmaFiltro.xhtml" target="centro">
 						</p:menuitem>
 						<p:menuitem value="Cidades"
@@ -63,7 +57,7 @@
 						</p:menuitem>
 						<p:menuitem value="Secretária"
 							action="#{secretariaRel.executaRelatorio()}" ajax="false"
-							onclick="document.getElementById('formMenuBar').target='centro';"
+							onclick="document.getElementById('formMenuBar').target='centro;"
 							rendered="#{(session.getAttribute('tipo') eq 'DIRETOR') or (session.getAttribute('tipo') eq 'SECRETARIA') or (session.getAttribute('tipo') eq 'ADMINISTRADOR')}">
 						</p:menuitem>
 						<p:menuitem value="Professor"
@@ -84,8 +78,8 @@
 
 			<h:form style="font-size: 13px" target="centro">
 				<p:toolbar>
-					<p:toolbarGroup align="left">
-						<h:outputText style="font-size:14px;"
+					<p:toolbarGroup align="right">
+						<h:outputText
 							value="Bem Vindo(a), #{loginControle.usuarioLogado.nome}"></h:outputText>
 					</p:toolbarGroup>
 				</p:toolbar>
@@ -112,14 +106,18 @@
 			<iframe name="centro" id="centro"
 				style="width: 100%; height: 99.7%; background-color: #FFFFFF;"
 				frameborder="0" />
-			<h:outputText
-				value=" Bem Vindo ao InfoSchool" />
 		</p:layoutUnit>
+
 
 
 	</p:layout>
 
-
+	<style>
+.Bimage {
+	background-image:
+		url("http://noticias.reclameaqui.com.br/uploads/2015/12/1196731690.jpg")
+}
+</style>
 </h:body>
 </html>
 
